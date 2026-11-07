@@ -1,0 +1,179 @@
+[
+  {
+    "pestana": "Usuarios",
+    "columnas": [
+      "ID usuario",
+      "Alias",
+      "Nombre",
+      "Peso corporal (kg)",
+      "Fecha peso",
+      "Invitado por",
+      "Activo",
+      "Registrado"
+    ]
+  },
+  {
+    "pestana": "Invitaciones",
+    "columnas": [
+      "Código",
+      "Creado por",
+      "Estado",
+      "Usado por",
+      "Fecha uso"
+    ],
+    "valores": {
+      "Estado": [
+        "Disponible",
+        "Usado",
+        "Anulado"
+      ]
+    }
+  },
+  {
+    "pestana": "Ejercicios",
+    "columnas": [
+      "Ejercicio",
+      "Grupo muscular",
+      "Sinónimos",
+      "Tipo",
+      "Por mano",
+      "Provisional"
+    ],
+    "valores": {
+      "Tipo": [
+        "peso",
+        "peso corporal",
+        "tiempo"
+      ],
+      "Por mano": [
+        "Sí",
+        "No"
+      ]
+    }
+  },
+  {
+    "pestana": "Sesiones",
+    "columnas": [
+      "ID sesión",
+      "ID usuario",
+      "Fecha",
+      "Grupos musculares",
+      "Observaciones",
+      "ID mensaje",
+      "ID mensaje bot",
+      "Estado registro",
+      "Origen",
+      "Registrado"
+    ]
+  },
+  {
+    "pestana": "Series",
+    "columnas": [
+      "ID serie",
+      "ID sesión",
+      "ID usuario",
+      "Fecha",
+      "Ejercicio",
+      "N.º serie",
+      "Unidad",
+      "Peso (kg)",
+      "Placa",
+      "Modalidad",
+      "Reps",
+      "Segundos",
+      "RPE",
+      "Notas",
+      "Estado registro",
+      "ID mensaje"
+    ],
+    "valores": {
+      "Unidad": [
+        "kg",
+        "placa"
+      ],
+      "Modalidad": [
+        "normal",
+        "lastre",
+        "asistida",
+        "corporal"
+      ]
+    }
+  },
+  {
+    "pestana": "Amigos",
+    "columnas": [
+      "ID",
+      "Usuario A",
+      "Usuario B",
+      "Estado",
+      "Fecha"
+    ],
+    "valores": {
+      "Estado": [
+        "Pendiente",
+        "Aceptada",
+        "Rechazada"
+      ]
+    }
+  },
+  {
+    "pestana": "Permisos",
+    "columnas": [
+      "ID usuario",
+      "Compartir con",
+      "Métricas"
+    ],
+    "valores": {
+      "Métricas": [
+        "ninguna",
+        "récords",
+        "volumen",
+        "todo"
+      ]
+    }
+  },
+  {
+    "pestana": "Por confirmar",
+    "columnas": [
+      "ID",
+      "ID usuario",
+      "Pregunta",
+      "Borrador JSON",
+      "ID mensaje bot",
+      "Estado",
+      "Reservado por",
+      "Creado"
+    ]
+  },
+  {
+    "pestana": "Cambios",
+    "columnas": [
+      "Fecha",
+      "ID usuario",
+      "Tabla",
+      "ID registro",
+      "Acción",
+      "Antes",
+      "Después",
+      "Origen"
+    ],
+    "valores": {
+      "Acción": [
+        "anular",
+        "corregir"
+      ]
+    }
+  },
+  {
+    "pestana": "Log Bot",
+    "columnas": [
+      "Fecha",
+      "ID usuario",
+      "update_id",
+      "Intención",
+      "Resultado",
+      "Duración (s)",
+      "Error"
+    ]
+  }
+]

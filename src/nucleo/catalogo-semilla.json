@@ -1,0 +1,512 @@
+[
+  {
+    "ejercicio": "Press banca",
+    "grupo": "pecho",
+    "sinonimos": [
+      "banca",
+      "press plano",
+      "press de banca",
+      "press banca plano",
+      "bench",
+      "bench press",
+      "press con barra"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Press inclinado",
+    "grupo": "pecho",
+    "sinonimos": [
+      "inclinado",
+      "press banca inclinado",
+      "banca inclinada",
+      "incline press",
+      "press inclinado con barra"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Press con mancuernas",
+    "grupo": "pecho",
+    "sinonimos": [
+      "press mancuernas",
+      "press plano con mancuernas",
+      "press de pecho con mancuernas",
+      "dumbbell press",
+      "press con mancuerna"
+    ],
+    "tipo": "peso",
+    "porMano": true,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Press inclinado con mancuernas",
+    "grupo": "pecho",
+    "sinonimos": [
+      "inclinado con mancuernas",
+      "inclinado mancuernas",
+      "press inclinado mancuernas",
+      "incline dumbbell press"
+    ],
+    "tipo": "peso",
+    "porMano": true,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Aperturas",
+    "grupo": "pecho",
+    "sinonimos": [
+      "aperturas con mancuernas",
+      "aperturas planas",
+      "flyes",
+      "dumbbell fly",
+      "aperturas en banco"
+    ],
+    "tipo": "peso",
+    "porMano": true,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Cruce de poleas",
+    "grupo": "pecho",
+    "sinonimos": [
+      "cruces en polea",
+      "cruces de polea",
+      "crossover",
+      "cable crossover",
+      "contractora",
+      "peck deck"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Fondos",
+    "grupo": "pecho",
+    "sinonimos": [
+      "fondos en paralelas",
+      "dips",
+      "paralelas",
+      "fondos de pecho"
+    ],
+    "tipo": "peso corporal",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Flexiones",
+    "grupo": "pecho",
+    "sinonimos": [
+      "lagartijas",
+      "push ups",
+      "push up",
+      "planchas de pecho",
+      "flexiones de pecho"
+    ],
+    "tipo": "peso corporal",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Dominadas",
+    "grupo": "espalda",
+    "sinonimos": [
+      "dominada",
+      "pull ups",
+      "pull up",
+      "chin up",
+      "dominadas pronas",
+      "barra fija"
+    ],
+    "tipo": "peso corporal",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Jalón al pecho",
+    "grupo": "espalda",
+    "sinonimos": [
+      "jalon",
+      "jalones",
+      "jalon dorsal",
+      "polea al pecho",
+      "lat pulldown",
+      "jalon tras nuca"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Remo con barra",
+    "grupo": "espalda",
+    "sinonimos": [
+      "remo barra",
+      "remo",
+      "remo inclinado",
+      "barbell row",
+      "remo con barra z"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Remo con mancuerna",
+    "grupo": "espalda",
+    "sinonimos": [
+      "remo mancuerna",
+      "remo a una mano",
+      "remo unilateral",
+      "dumbbell row",
+      "remo con mancuernas"
+    ],
+    "tipo": "peso",
+    "porMano": true,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Remo en polea",
+    "grupo": "espalda",
+    "sinonimos": [
+      "remo sentado",
+      "remo en maquina",
+      "remo polea baja",
+      "seated row",
+      "remo en polea baja"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Peso muerto",
+    "grupo": "espalda",
+    "sinonimos": [
+      "deadlift",
+      "peso muerto convencional",
+      "muerto"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Pull over",
+    "grupo": "espalda",
+    "sinonimos": [
+      "pullover",
+      "pull-over"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Press militar",
+    "grupo": "hombro",
+    "sinonimos": [
+      "press de hombro",
+      "press hombro",
+      "militar",
+      "overhead press",
+      "press con barra de pie",
+      "press militar con barra"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Press de hombro con mancuernas",
+    "grupo": "hombro",
+    "sinonimos": [
+      "press hombro mancuernas",
+      "press militar con mancuernas",
+      "shoulder press",
+      "hombro con mancuernas"
+    ],
+    "tipo": "peso",
+    "porMano": true,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Elevaciones laterales",
+    "grupo": "hombro",
+    "sinonimos": [
+      "laterales",
+      "vuelos laterales",
+      "lateral raise",
+      "elevacion lateral",
+      "elevaciones laterales con mancuernas"
+    ],
+    "tipo": "peso",
+    "porMano": true,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Pájaros",
+    "grupo": "hombro",
+    "sinonimos": [
+      "vuelos posteriores",
+      "elevaciones posteriores",
+      "reverse fly",
+      "pajaros con mancuernas",
+      "deltoide posterior"
+    ],
+    "tipo": "peso",
+    "porMano": true,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Curl de bíceps",
+    "grupo": "bíceps",
+    "sinonimos": [
+      "curl",
+      "curl con barra",
+      "curl biceps",
+      "biceps",
+      "curl de biceps con barra",
+      "barbell curl"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Curl con mancuernas",
+    "grupo": "bíceps",
+    "sinonimos": [
+      "curl mancuernas",
+      "curl alterno",
+      "curl con mancuerna",
+      "dumbbell curl",
+      "biceps con mancuernas"
+    ],
+    "tipo": "peso",
+    "porMano": true,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Curl martillo",
+    "grupo": "bíceps",
+    "sinonimos": [
+      "martillo",
+      "hammer curl",
+      "curl tipo martillo"
+    ],
+    "tipo": "peso",
+    "porMano": true,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Curl predicador",
+    "grupo": "bíceps",
+    "sinonimos": [
+      "curl scott",
+      "predicador",
+      "preacher curl",
+      "curl en banco scott"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Extensión de tríceps en polea",
+    "grupo": "tríceps",
+    "sinonimos": [
+      "triceps polea",
+      "pushdown",
+      "triceps en polea",
+      "jalon de triceps",
+      "extension de triceps",
+      "triceps con cuerda",
+      "extension triceps polea"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Press francés",
+    "grupo": "tríceps",
+    "sinonimos": [
+      "skull crusher",
+      "rompecraneos",
+      "triceps tumbado",
+      "frances"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Patada de tríceps",
+    "grupo": "tríceps",
+    "sinonimos": [
+      "patada triceps",
+      "kickback",
+      "patadas de triceps"
+    ],
+    "tipo": "peso",
+    "porMano": true,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Sentadilla",
+    "grupo": "cuádriceps",
+    "sinonimos": [
+      "sentadillas",
+      "squat",
+      "sentadilla libre",
+      "sentadilla con barra",
+      "back squat"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Prensa",
+    "grupo": "cuádriceps",
+    "sinonimos": [
+      "prensa de piernas",
+      "leg press",
+      "prensa 45",
+      "prensa inclinada"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Extensión de cuádriceps",
+    "grupo": "cuádriceps",
+    "sinonimos": [
+      "extensiones de pierna",
+      "extension de piernas",
+      "leg extension",
+      "silla de cuadriceps",
+      "cuadriceps en maquina"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Zancadas",
+    "grupo": "cuádriceps",
+    "sinonimos": [
+      "estocadas",
+      "lunges",
+      "zancada",
+      "desplantes",
+      "zancadas con mancuernas"
+    ],
+    "tipo": "peso",
+    "porMano": true,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Peso muerto rumano",
+    "grupo": "femoral",
+    "sinonimos": [
+      "rumano",
+      "romanian deadlift",
+      "rdl",
+      "peso muerto piernas rigidas"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Curl femoral",
+    "grupo": "femoral",
+    "sinonimos": [
+      "curl de pierna",
+      "femoral",
+      "leg curl",
+      "curl femoral acostado",
+      "curl femoral sentado",
+      "isquios"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Hip thrust",
+    "grupo": "glúteo",
+    "sinonimos": [
+      "puente de gluteo",
+      "empuje de cadera",
+      "hip thrust con barra",
+      "gluteo en banco",
+      "puente de cadera"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Elevación de talones",
+    "grupo": "pantorrilla",
+    "sinonimos": [
+      "gemelos",
+      "pantorrillas",
+      "calf raise",
+      "elevacion de gemelos",
+      "pantorrilla de pie",
+      "talones"
+    ],
+    "tipo": "peso",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Abdominales",
+    "grupo": "abdomen",
+    "sinonimos": [
+      "crunch",
+      "crunches",
+      "abdominales en suelo",
+      "abs",
+      "encogimientos"
+    ],
+    "tipo": "peso corporal",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Elevación de piernas",
+    "grupo": "abdomen",
+    "sinonimos": [
+      "elevaciones de piernas",
+      "leg raise",
+      "piernas colgado",
+      "elevacion de piernas colgado"
+    ],
+    "tipo": "peso corporal",
+    "porMano": false,
+    "provisional": true
+  },
+  {
+    "ejercicio": "Plancha",
+    "grupo": "abdomen",
+    "sinonimos": [
+      "plank",
+      "plancha abdominal",
+      "plancha isometrica"
+    ],
+    "tipo": "tiempo",
+    "porMano": false,
+    "provisional": true
+  }
+]
