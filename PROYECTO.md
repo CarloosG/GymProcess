@@ -1,6 +1,6 @@
 # GymProcess — Bot de gimnasio y competencia entre amigos
 
-**Estado (2026-11-07):** T00, T01 y T02 ✅ (núcleo completo de registro y métricas, 91 pruebas). Siguiente: T03 hojas. **Ronda 2 de la entrevista abierta** (puntos/metas, privacidad del grupo, retos, tablero con edición).
+**Estado (2026-11-07):** T00, T01 y T02 ✅ (núcleo completo de registro y métricas, 91 pruebas). T03: hoja PRUEBAS creada (la real, tras la ronda 2). Siguiente: T04 Entrada + Errores. **Ronda 2 de la entrevista abierta** (puntos/metas, privacidad del grupo, retos, tablero con edición).
 
 Bot de Telegram → n8n (self-hosted) → Google Sheets → Apps Script (tablero). Para el Ingeniero William Delgado y sus amigos.
 Al retomar una sesión **este archivo es lo primero que se lee**. Reglas para agentes: `AGENTS.md`. Contrato de subflujos: `tareas/CONTRATO.md`.
@@ -90,7 +90,7 @@ Regla: no se pasa a la siguiente sin **APROBADO**; en las que tocan Telegram, ta
 | T00 | Esqueleto: plantilla, agentes, `PROYECTO.md`, `CONTRATO.md`, Luxon | Repo | Arquitecto | ✅ |
 | T01 | Núcleo A — entrada: catálogo y sinónimos (sin tildes), unidades (lb→kg, placas, modalidades), fechas relativas en Bogotá, atajo sin IA para series ("3x10 con 50", "60 kg 10, 9 y 8"), validación del JSON de la IA, `hoja/esquema.json` | `src/nucleo/` + pruebas | ejecutor + auditor | ✅ |
 | T02 | Núcleo B — métricas: 1RM, volumen, récords, última sesión por grupo, estancados con sugerencias, mejor entrenamiento, asistencia; textos (HTML escapado, corte 4096) | `src/nucleo/` + pruebas | ejecutor + auditor | ✅ |
-| T03 | Hojas PRUEBAS y real desde el esquema (pestañas, encabezados, validaciones, catálogo) | Hojas + IDs en `docs/ids-y-credenciales.md` | Arquitecto (conector) | |
+| T03 | Hojas PRUEBAS y real desde el esquema (pestañas, encabezados, validaciones, catálogo) | Hojas + IDs en `docs/ids-y-credenciales.md` | Arquitecto (conector) | ◐ PRUEBAS lista |
 | T04 | *Gym - Entrada* + *Gym - Errores*: recibir, invitación/registro, anti-duplicado, "hola", log | JSON + build | ejecutor + auditor | |
 | T05 | *Gym - Registro*: texto → sesión + series, confirmación, faltantes, ↩️/corregir ≤ 3 días | JSON + build | ejecutor + auditor | |
 | — | Importar y probar en vivo con hoja PRUEBAS (William) | `tareas/T05/evidencia.md` | William + arquitecto | |
@@ -126,3 +126,4 @@ Regla: no se pasa a la siguiente sin **APROBADO**; en las que tocan Telegram, ta
 | T00 | 2026-11-07 | ✅ | Plantilla copiada (28 skills), agentes `ejecutor-ligero`/`ejecutor`/`auditor`, Luxon instalado por el hook. |
 | T01 | 2026-11-07 | ✅ APROBADO (ciclo 2) | Núcleo A: catálogo semilla (37, provisional), unidades/placas/modalidades, fechas Bogotá, atajo de series, validación sin inventar. 62/62 pruebas. Ciclo 1 rechazado: atajo inventaba reps con "3 series de 10" y el concatenado fallaba con `require` de n8n. Observaciones menores: "10 series 3" se lee 10×3; "plancha 3 series de 45 s" deja segundos vacío (se pregunta). |
 | T02 | 2026-11-07 | ✅ APROBADO (ciclo 1) | Núcleo B: 1RM, volumen, récords, última sesión por grupo, estancado con sugerencias, mejor entrenamiento, asistencia, rangos semana/mes, progreso, frecuencia, fuerza relativa; textos HTML escapados y `partirMensaje`. 91/91 pruebas. Observación → CONTRATO E3 (anular sesión anula sus series). |
+| T03 | 2026-11-07 | ◐ PRUEBAS lista | Hoja PRUEBAS creada y verificada (10 pestañas, es_CO, Bogotá, validaciones, 37 ejercicios). ID en `docs/ids-y-credenciales.md`. Hoja real tras la ronda 2. |
