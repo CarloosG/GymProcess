@@ -9,8 +9,15 @@
       "Fecha peso",
       "Invitado por",
       "Activo",
-      "Registrado"
-    ]
+      "Registrado",
+      "Rol"
+    ],
+    "valores": {
+      "Rol": [
+        "admin",
+        "usuario"
+      ]
+    }
   },
   {
     "pestana": "Invitaciones",

@@ -59,7 +59,7 @@ Hoja **PRUEBAS** y hoja **real** con la misma estructura. Pestañas y encabezado
 
 | Pestaña | Columnas |
 |---|---|
-| **Usuarios** | ID usuario (= chat_id) · Alias · Nombre · Peso corporal (kg) · Fecha peso · Invitado por · Activo · Registrado |
+| **Usuarios** | ID usuario (= chat_id) · Alias · Nombre · Peso corporal (kg) · Fecha peso · Invitado por · Activo · Registrado · Rol (`admin/usuario`) |
 | **Invitaciones** | Código · Creado por · Estado (`Disponible/Usado/Anulado`) · Usado por · Fecha uso |
 | **Ejercicios** | Ejercicio (nombre canónico) · Grupo muscular · Sinónimos · Tipo (`peso`, `peso corporal`, `tiempo`) · Por mano (`Sí/No`) · Provisional |
 | **Sesiones** | ID sesión · ID usuario · Fecha · Grupos musculares · Observaciones · ID mensaje · ID mensaje bot · Estado registro · Origen · Registrado |
