@@ -5,7 +5,7 @@ Lo que **todo** módulo del núcleo y todo subflujo debe cumplir. Se cambia solo
 ## 1. Núcleo (`src/nucleo/`)
 - JavaScript puro (CommonJS, Node 22), **sin dependencias** salvo Luxon (disponible en n8n como `DateTime`). Sin acceso a red, hoja ni `$json`: funciones puras que reciben datos y devuelven datos.
 - Toda función que dependa de la hora recibe `ahora` (ISO o `DateTime`) como parámetro. Zona `America/Bogota`. Semanas lunes–domingo.
-- Pruebas con `node --test src/nucleo/` (módulo `node:test` + `node:assert`). Cada función pública: caso válido, inválido y de borde. Datos inventados.
+- Pruebas con `node --test "src/nucleo/**/*.test.js"` (E1) (módulo `node:test` + `node:assert`). Cada función pública: caso válido, inválido y de borde. Datos inventados.
 - Se inserta en los nodos Code con `scripts/build_<flujo>.js` (concatena el núcleo + el código del nodo). Nunca se edita a mano el `jsCode` de un JSON.
 - Exporta con `module.exports` protegido (`if (typeof module !== 'undefined')`) para servir también en Apps Script.
 
@@ -46,4 +46,5 @@ Lo que **todo** módulo del núcleo y todo subflujo debe cumplir. Se cambia solo
 - Verificador: `python3 .claude/skills/n8n-workflow-check/scripts/check_workflow.py <json> --modo produccion` con 0 ❌.
 
 ## Enmiendas
-_(ninguna)_
+1. **E1 (2026-11-07):** el comando de pruebas es `node --test "src/nucleo/**/*.test.js"` (Node 22 no recorre un directorio pasado como argumento). Prohibido cargar pruebas desde `index.js`.
+2. **E2 (2026-11-07):** encabezados simples, sin aclaraciones entre paréntesis: `ID usuario` (= chat_id), `Ejercicio` (nombre canónico). *Series* agrega la columna `Segundos` para ejercicios de tipo `tiempo` (en ellos `Reps` queda vacío).

@@ -59,11 +59,11 @@ Hoja **PRUEBAS** y hoja **real** con la misma estructura. Pestañas y encabezado
 
 | Pestaña | Columnas |
 |---|---|
-| **Usuarios** | ID usuario (chat_id) · Alias · Nombre · Peso corporal (kg) · Fecha peso · Invitado por · Activo · Registrado |
+| **Usuarios** | ID usuario (= chat_id) · Alias · Nombre · Peso corporal (kg) · Fecha peso · Invitado por · Activo · Registrado |
 | **Invitaciones** | Código · Creado por · Estado (`Disponible/Usado/Anulado`) · Usado por · Fecha uso |
-| **Ejercicios** | Ejercicio (canónico) · Grupo muscular · Sinónimos · Tipo (`peso`, `peso corporal`, `tiempo`) · Por mano (`Sí/No`) · Provisional |
+| **Ejercicios** | Ejercicio (nombre canónico) · Grupo muscular · Sinónimos · Tipo (`peso`, `peso corporal`, `tiempo`) · Por mano (`Sí/No`) · Provisional |
 | **Sesiones** | ID sesión · ID usuario · Fecha · Grupos musculares · Observaciones · ID mensaje · ID mensaje bot · Estado registro · Origen · Registrado |
-| **Series** | ID serie · ID sesión · ID usuario · Fecha · Ejercicio · N.º serie · Unidad (`kg/placa`) · Peso (kg) · Placa · Modalidad (`normal/lastre/asistida/corporal`) · Reps · RPE · Notas · Estado registro · ID mensaje |
+| **Series** | ID serie · ID sesión · ID usuario · Fecha · Ejercicio · N.º serie · Unidad (`kg/placa`) · Peso (kg) · Placa · Modalidad (`normal/lastre/asistida/corporal`) · Reps · Segundos · RPE · Notas · Estado registro · ID mensaje |
 | **Amigos** | ID · Usuario A · Usuario B · Estado (`Pendiente/Aceptada/Rechazada`) · Fecha |
 | **Permisos** | ID usuario · Compartir con (`amigos`/ID) · Métricas (`ninguna/récords/volumen/todo`) |
 | **Retos** · **Participantes** | según ronda 2 |
@@ -71,7 +71,7 @@ Hoja **PRUEBAS** y hoja **real** con la misma estructura. Pestañas y encabezado
 | **Cambios** | Fecha · ID usuario · Tabla · ID registro · Acción (`anular/corregir`) · Antes · Después · Origen |
 | **Log Bot** | Fecha · ID usuario · update_id · Intención · Resultado · Duración (s) · Error |
 
-Las métricas no se guardan: se calculan en el núcleo. Si la lectura se vuelve lenta, se agrega una pestaña caché con su regla de recálculo.
+Los encabezados reales son los de `hoja/esquema.json` (sin el texto entre paréntesis; ver CONTRATO E2). Las métricas no se guardan: se calculan en el núcleo. Si la lectura se vuelve lenta, se agrega una pestaña caché con su regla de recálculo.
 
 ### Fórmulas del núcleo
 - **1RM (Epley):** `peso × (1 + reps/30)`, solo reps ≤ 12; con reps = 1, 1RM = peso. No aplica a placas ni a corporal/asistida.
