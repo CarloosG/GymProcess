@@ -86,7 +86,7 @@ const planSal = { chat_id: 2002, update_id: 6001, respuesta: 'x', ops: [
   { tabla: 'Log Bot', tipo: 'append', valores: { Fecha: '2026-11-07 14:30:00', 'ID usuario': 2002, update_id: 6001, 'Intención': 'registro', Resultado: 'registrado', 'Duración (s)': 0.1, Error: '' } }] };
 guardar('casos-solicitudes.json', [
   { nombre: 'registro: 2 appends y 1 batchUpdate; limpio() en texto', tipo: 'valido', ahora: AHORA, entrada: [planSal], nodos: { Config: [{ hojaId: 'HOJA_DE_PRUEBA' }], Tablas: '@tablas.json' },
-    espera: { cantidad: 3, salida: [{ descripcion: 'append Usuarios' }, { descripcion: 'append Log Bot' }, { descripcion: 'batchUpdate', body: { valueInputOption: 'RAW' } }], contiene: ["'=HYPERLINK", 'insertDataOption=INSERT_ROWS', 'Log%20Bot'] } },
+    espera: { cantidad: 3, salida: [{ descripcion: 'append Usuarios' }, { descripcion: 'append Log Bot' }, { descripcion: 'batchUpdate', body: { valueInputOption: 'RAW' } }], contiene: ['=HYPERLINK(', 'insertDataOption=INSERT_ROWS', 'Log%20Bot'], no_contiene: ["'=HYPERLINK"] } },
   { nombre: 'hojaId sin configurar', tipo: 'invalido', ahora: AHORA, entrada: [planSal], nodos: { Config: [{ hojaId: 'PENDIENTE_ID_HOJA' }], Tablas: '@tablas.json' }, espera: { error: 'hojaId' } },
   { nombre: 'misma entrada otra vez: mismas peticiones (el anti-duplicado ocurre antes, en Plan)', tipo: 'duplicado', ahora: AHORA, entrada: [planSal], nodos: { Config: [{ hojaId: 'HOJA_DE_PRUEBA' }], Tablas: '@tablas.json' }, espera: { cantidad: 3 } },
 ]);

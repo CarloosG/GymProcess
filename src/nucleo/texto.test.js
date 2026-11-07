@@ -17,13 +17,15 @@ test('normalizar: borde (puntuación de borde sí, interna se conserva)', () => 
   assert.strictEqual(normalizar(12), '12');
 });
 
-test('limpio: válido, inválido y borde', () => {
+test('limpio: válido, inválido y borde (E5: no antepone apóstrofo)', () => {
   const { limpio } = require('./texto');
   assert.strictEqual(limpio('Ana'), 'Ana');
-  assert.strictEqual(limpio('=SUM(A1)'), "'=SUM(A1)");
-  assert.strictEqual(limpio('+57 300'), "'+57 300");
-  assert.strictEqual(limpio('@ana'), "'@ana");
-  assert.strictEqual(limpio('1/2'), "'1/2");
+  assert.strictEqual(limpio('  Ana  '), 'Ana');
+  assert.strictEqual(limpio('=SUM(A1)'), '=SUM(A1)');
+  assert.strictEqual(limpio('+57 300'), '+57 300');
+  assert.strictEqual(limpio('@ana'), '@ana');
+  assert.strictEqual(limpio('1/2'), '1/2');
+  assert.strictEqual(limpio('a\u0000b\u0007c\td'), 'abcd');
   assert.strictEqual(limpio(62.5), 62.5);
   assert.strictEqual(limpio(null), '');
   assert.strictEqual(limpio(undefined), '');

@@ -309,3 +309,48 @@ Cobertura de los 8 casos pedidos en el criterio 4: válido (usuario activo dice 
 
 ## BLOCKERS
 Ninguno.
+
+## AJUSTES v2 (CONTRATO E5: limpio() ya no antepone apóstrofo)
+Cambios: src/nucleo/texto.js (limpio solo recorta espacios y quita caracteres de control), pruebas en src/nucleo/texto.test.js y src/code/entrada/entrada.test.js, casos de Solicitudes (src/code/entrada/casos/), flujos regenerados. Se retira el riesgo del apóstrofo visible (RISKS) y la decisión 3 queda sin protección de = + @.
+```
+$ node --test "src/**/*.test.js"
+1..112
+# tests 112
+# suites 0
+# pass 112
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 356.502872
+
+$ node scripts/build_flujos.js (x2) + sha256sum
+generado flujos/gym/gym-entrada-v1.json (12 nodos)
+generado flujos/gym/gym-errores-v1.json (5 nodos)
+generado flujos/gym/gym-entrada-v1.json (12 nodos)
+generado flujos/gym/gym-errores-v1.json (5 nodos)
+5a15c22fd4ef1e9a7d4752c5a3b215fe36b422c9028b7b5b34900aff2f819bb6  flujos/gym/gym-entrada-v1.json
+9f19ecb2a7f0701be8015ffee65e5db3f285dc00da299c8c2052ec489a56ad50  flujos/gym/gym-errores-v1.json
+
+$ check_workflow.py --modo produccion
+=== gym-entrada-v1.json — Gym - Entrada (12 nodos)
+Resultado: 0 errores, 0 avisos → OK para entregar
+=== gym-errores-v1.json — Gym - Errores (5 nodos)
+Resultado: 0 errores, 0 avisos → OK para entregar
+
+$ simular_code.js Solicitudes
+Simulando "Solicitudes" (una vez para todos) — 3 casos
+
+✅ 1. [valido] registro: 2 appends y 1 batchUpdate; limpio() en texto
+✅ 2. [invalido] hojaId sin configurar
+✅ 3. [duplicado] misma entrada otra vez: mismas peticiones (el anti-duplicado ocurre antes, en Plan)
+
+Resultado: 3/3 casos correctos
+Recordatorio: esto simula el código del nodo; no prueba Telegram, Sheets ni Gemini dentro de n8n.
+
+$ simular_code.js Plan
+✅ 8. [invalido] usuario inactivo con código válido
+
+Resultado: 8/8 casos correctos
+Recordatorio: esto simula el código del nodo; no prueba Telegram, Sheets ni Gemini dentro de n8n.
+```

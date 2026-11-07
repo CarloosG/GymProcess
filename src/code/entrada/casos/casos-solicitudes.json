@@ -73,9 +73,12 @@
         }
       ],
       "contiene": [
-        "'=HYPERLINK",
+        "=HYPERLINK(",
         "insertDataOption=INSERT_ROWS",
         "Log%20Bot"
+      ],
+      "no_contiene": [
+        "'=HYPERLINK"
       ]
     }
   },

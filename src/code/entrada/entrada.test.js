@@ -141,7 +141,7 @@ test('plan: las ops solo usan columnas del esquema', () => {
   }
 });
 
-test('solicitudes: append por pestaña y un solo batchUpdate por fila; limpio() protege textos', () => {
+test('solicitudes: append por pestaña y un solo batchUpdate por fila; limpio() no altera = + @ (E5)', () => {
   const p = planificar(norm({ nombre: '=HYPERLINK("x")', alias_tg: '+57', texto: '/start GYM-AAA111' }), tablasBase(), AHORA);
   const s = armarSolicitudes(p.ops, 'HOJA123', ENC);
   assert.strictEqual(s.length, 3);
@@ -150,8 +150,8 @@ test('solicitudes: append por pestaña y un solo batchUpdate por fila; limpio() 
   assert.ok(s[1].url.includes('Log%20Bot'));
   const fila = s[0].body.values[0];
   assert.strictEqual(fila.length, ENC.Usuarios.length);
-  assert.strictEqual(fila[ENC.Usuarios.indexOf('Nombre')], "'=HYPERLINK(\"x\")");
-  assert.strictEqual(fila[ENC.Usuarios.indexOf('Alias')], "'+57");
+  assert.strictEqual(fila[ENC.Usuarios.indexOf('Nombre')], '=HYPERLINK(\"x\")');
+  assert.strictEqual(fila[ENC.Usuarios.indexOf('Alias')], '+57');
   assert.strictEqual(fila[ENC.Usuarios.indexOf('ID usuario')], 2002);
   assert.ok(s[2].url.endsWith('/values:batchUpdate'));
   assert.strictEqual(s[2].body.valueInputOption, 'RAW');
