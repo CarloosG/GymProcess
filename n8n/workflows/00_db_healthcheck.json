@@ -1,0 +1,54 @@
+{
+  "name": "00 · DB Healthcheck",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "caa3b53f-41a4-5d32-8adb-1cd681f22eb6",
+      "name": "Ejecutar manualmente",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  (SELECT count(*) FROM muscle_groups)     AS grupos_musculares,\n  (SELECT count(*) FROM exercises)         AS ejercicios,\n  (SELECT count(*) FROM exercise_aliases)  AS alias,\n  (SELECT count(*) FROM users)             AS usuarios,\n  (SELECT name FROM fn_resolve_exercise('bench press') LIMIT 1) AS prueba_alias,\n  f_e1rm(60,10) AS prueba_e1rm_60x10,\n  current_user AS rol, version() AS version;",
+        "options": {}
+      },
+      "id": "59717ff2-4479-5ab7-b0d9-611632dd0755",
+      "name": "Comprobar BD",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        220,
+        0
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "REEMPLAZAR",
+          "name": "Gym DB"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Ejecutar manualmente": {
+      "main": [
+        [
+          {
+            "node": "Comprobar BD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

@@ -1,0 +1,145 @@
+{
+  "name": "01 · Telegram Ping (Fase 1)",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "a07ce97a-e4a7-5730-ae6f-048b7a2f10d3",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "REEMPLAZAR",
+          "name": "Gym Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH u AS (\n  SELECT * FROM fn_upsert_telegram_user($1::bigint, $2, $3, $4)\n), log AS (\n  INSERT INTO message_log (channel, update_id, user_id, direction, text)\n  SELECT 'telegram', $5::bigint, u.user_id, 'in', $6 FROM u\n  ON CONFLICT (channel, update_id, direction) DO NOTHING\n  RETURNING id\n)\nSELECT u.user_id, u.display_name, u.is_new, u.timezone,\n       EXISTS (SELECT 1 FROM log) AS is_new_update,\n       (SELECT count(*) FROM exercises) AS ejercicios,\n       (SELECT count(*) FROM workout_sessions ws WHERE ws.user_id = u.user_id) AS sesiones\nFROM u;",
+        "options": {
+          "queryReplacement": "={{ [ $json.message.from.id, $json.message.from.username ?? '', $json.message.from.first_name ?? '', $json.message.from.language_code ?? 'es', $json.update_id, $json.message.text ?? '' ] }}"
+        }
+      },
+      "id": "d91f412e-affb-52ac-b901-30d40bf64874",
+      "name": "Registrar usuario y mensaje",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        240,
+        0
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "REEMPLAZAR",
+          "name": "Gym DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.is_new_update }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "fc962589-162d-5816-8db0-4c0aa83ce31b",
+      "name": "¿Mensaje nuevo?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.is_new ? '👋 ¡Bienvenido/a, ' + $json.display_name + '! Tu perfil se creó.' : '✅ Hola de nuevo, ' + $json.display_name + '.' }}\n\nConexión OK:\n• Tu ID interno: {{ $json.user_id }}\n• Zona horaria: {{ $json.timezone }}\n• Ejercicios en catálogo: {{ $json.ejercicios }}\n• Sesiones registradas: {{ $json.sesiones }}\n\nRecibí: \"{{ $('Telegram Trigger').item.json.message.text }}\"",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "87602697-c123-5340-943a-9e06c8c2a804",
+      "name": "Responder",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        720,
+        -20
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "REEMPLAZAR",
+          "name": "Gym Bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Registrar usuario y mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Registrar usuario y mensaje": {
+      "main": [
+        [
+          {
+            "node": "¿Mensaje nuevo?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Mensaje nuevo?": {
+      "main": [
+        [
+          {
+            "node": "Responder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
