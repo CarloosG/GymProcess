@@ -1,42 +1,41 @@
 # T01 · Auditoría
 
-## VERDICT
-RECHAZADO
+## CICLO 1 (resumen) — RECHAZADO
+Hallazgos: (1) ALTA: `atajoSeries` tomaba el "3" de "3 series de 10" como reps (dato inventado); (2) ALTA: núcleo concatenado fallaba en n8n si `require` existe como función (`require('./texto')` lanza); (3) MEDIA: `validarRegistro` convertía " " en 0 y aceptaba "0x10"/"1e1"; (4) BAJA: "curl 20 10 8" registraba el peso como reps. Resto (fechas, catálogo, esquema, E1/E2, secretos) correcto.
 
-## FINDINGS
-1. **[ALTA, bloqueante] `atajoSeries` inventa reps con "N series (de) M".** "press banca 60 kg 3 series de 10" -> 2 series (60x3, 60x10); "press banca 60 kg 4 series 10" -> 60x4, 60x10; "curl 3 series 10 20 kg" -> 20x3, 20x10; "press banca 60 kg 10 reps 3 series" -> 60x10, 60x3. El "3" de "3 series" se toma como reps y la salida tiene peso, así que `validarRegistro` da `completo:true` y se guardaría dato falso sin preguntar. Debe devolver `null` (o interpretar NxM). Con "3 veces", "8 reps en 3 series" sí devuelve null, correcto.
-2. **[ALTA, bloqueante] El núcleo concatenado falla si `require` existe como función (Code node de n8n).** Cada módulo hace `(typeof require === 'function') ? require('./texto') : {normalizar: normalizar}`. En n8n `require` existe (solo módulos permitidos) y `require('./texto')` lanza `Cannot find module './texto'`. Probé con `vm`: sin `require` + `DateTime` global OK; con `require` que solo resuelve `luxon` -> FALLA. El ejecutor solo probó el caso sin `require`. Fix: no depender de `require` en los módulos (usar funciones globales hoisted en el build; envolver `require` en try/catch con fallback al símbolo global), y usar `typeof module !== 'undefined'` para detectar Node.
-3. [MEDIA] `validarRegistro` convierte un peso/reps en blanco `" "` en 0: `{pesoKg:" ",reps:5}` -> `completo:true`, `pesoKg:0` (dato inventado). `_num` debe tratar cadenas vacías tras `trim()` como vacío. También acepta `"0x10"` -> 16 y `"1e1"` -> 10 en reps.
-4. [BAJA] `atajoSeries("curl 20 10 8")` / `"press banca 40 10"` -> reps 20,10,8 sin peso (no inventa peso; luego `validarRegistro` pide `pesoKg`), pero registra el peso como reps si el usuario responde solo el peso. Considerar `null` cuando no hay peso/placa y el primer número > 12 o sin "kg" en tipo peso.
-5. [BAJA] `atajoSeries("press banca 1000 kg 10")` devuelve 1000 kg (lo frena `validarRegistro`, aceptable). `notas` con `=...` no se protege (corresponde a la capa de escritura, T04/T05).
-6. [INFO] `resolverFecha`: correcto en medianoche Bogotá (04:59:59Z/05:00:00Z, 31 dic/1 ene, bisiesto, 12/11 futura, 25 dic futura). "1 de enero" el 31-dic -> 2026-01-01 (año actual, por especificación). `resolverEjercicio`: sin falsos "exacto" (sin colisiones en la semilla; ambiguos -> dudoso). Esquema coincide con PROYECTO §3 (Segundos tras Reps, encabezados simples E2). `index.js` solo reexporta (E1 cumplido). Sin secretos.
+## CICLO 2 (re-auditoría)
 
-## EVIDENCE
+### VERDICT
+APROBADO
+
+### FINDINGS
+1. Hallazgo 1 RESUELTO: "press banca 60 kg 3 series de 10" -> 3x(60x10); "4 series 10" -> 4x(60x10); "curl 3 series 10 20 kg" -> 3x(20x10); "60 kg 10 reps 3 series", "3 series" sin reps, "3 series 10 8", "3 series 10, 9, 8", "series 10 9 8", "3 sets de 10", "tres series de 10", "3 series de 10 y 2 series de 8", "serie 1 10 serie 2 8" -> null. Ninguno cuenta "series" como reps.
+2. Hallazgo 2 RESUELTO: núcleo concatenado corre en `node:vm` (a) sin require, (b) con require que lanza para toda ruta, (c) con require que solo resuelve luxon, todos con `DateTime` global; mismos resultados (fecha, atajo, catálogo, validar). También sin `DateTime` global pero con require de luxon.
+3. Hallazgo 3 RESUELTO: `" "`, `"\t"`, `"\n"`, `" "` -> faltante (no 0); "0x10", "1e1", ".5", "5.", "+5", "60 kg", "１０", arreglos, objetos, NaN -> error; `" 60,5 "` -> 60.5. `aKg(' ','lb')` -> null. RPE en blanco -> vacío (campo opcional), "0x5" -> error.
+4. Hallazgo 4 RESUELTO: "curl 20 10 8", "press banca 40 10", "curl 50 12", "curl 12.5 10" -> null; "Press banca 10, 9" y "Dominadas 15, 12/20 15 12" siguen funcionando (sin peso -> `validarRegistro` pide peso o es corporal).
+5. Sin regresiones: 62/62 pruebas; esquema (10 pestañas), índice, sin secretos, working tree limpio.
+
+Observaciones NO bloqueantes:
+- "press banca 60 kg 10 series 3" se lee como 10 series de 3 (orden literal "N series M"); es una lectura coherente con la regla, no inventa números que el usuario no escribió.
+- "plancha 3 series de 45 s" devuelve 3 series con `segundos: null` (no inventa; `validarRegistro` lo marca faltante). El atajo no extrae segundos en ese formato; la IA lo cubriría.
+- Las pruebas de los ajustes 1, 3 y 4 se escribieron junto con el arreglo (el ejecutor lo declara); los casos coinciden con los reproducidos aquí y pasan.
+- Heredado: `notas` con `=...` no se protege aquí (capa de escritura, T04/T05).
+
+### EVIDENCE
 ```
 $ node --test "src/nucleo/**/*.test.js"
-# tests 56
-# pass 56
-# fail 0
-$ node --test src/nucleo/        (comando original del brief, sustituido por E1)
-# fail 0   (no ejecuta pruebas en Node 22; esperado, ver E1)
-$ node -e "const n=require('./src/nucleo'); console.log(Object.keys(n).join(', '))"
-normalizar, resolverEjercicio, aKg, leerPlaca, buscarPlaca, MODALIDADES, LB_A_KG, resolverFecha, inyectarLuxon, atajoSeries, validarRegistro
-$ python3 -c "import json;d=json.load(open('hoja/esquema.json'));print(len(d),'pestañas')"
-10 pestañas
-$ git status --short
-?? hoja/
-?? src/
-?? tareas/T01/ejecutor.md
-$ git diff | grep -nE "AIza|gsk_|sk-|ya29\.|Bearer ..."   -> vacío (grep sobre src/ hoja/ también vacío)
-```
-Exploratorias (en /tmp/aud/): concat.js (vm: sin require OK; con require restringido FALLA `Cannot find module './texto'`), edge.js y edge2.js (casos de fechas, ejercicios, atajo y rangos). Salida de hallazgo 1:
-```
-"press banca 60 kg 3 series de 10" -> 60x3 60x10
-"curl 3 series 10 20 kg"           -> 20x3 20x10
+# tests 62  # pass 62  # fail 0
+$ node /tmp/aud2/vm.js   (concat de texto,catalogo,unidades,fechas,series,validar)
+norequire [1,{"ok":true,"fecha":"2026-11-06"},{"ok":true,"fecha":"2026-11-09"},"dudoso",true]
+throws    [1,{"ok":true,"fecha":"2026-11-06"},{"ok":true,"fecha":"2026-11-09"},"dudoso",true]
+n8n-like  [1,{"ok":true,"fecha":"2026-11-06"},{"ok":true,"fecha":"2026-11-09"},"dudoso",true]
+sin global {"ok":true,"fecha":"2026-11-08"}
+$ node /tmp/aud2/t.js   (casos de series, números raros y blancos; ver FINDINGS 1-4)
+press banca 60 kg 3 series de 10 => 60x10 x3 | 60 kg 10 reps 3 series => null | curl 20 10 8 => null
+{"pesoKg":" ","reps":5} => completo:false, faltante pesoKg, valor null
+{"pesoKg":60,"reps":"1e1"} => error | {"pesoKg":"0x10"} => error
+$ git status --short -> vacío; grep de secretos sobre src/ hoja/ y git diff HEAD -> vacío
 ```
 
-## REQUIRED_FIXES
-1. `atajoSeries`: con la palabra "series" precedida de número ("N series", "N series de M") -> interpretar como NxM o devolver `null`; nunca contarlo como reps. Agregar pruebas.
-2. Quitar la dependencia de `require` en los módulos para el build concatenado (o try/catch con fallback a globales) y agregar una prueba que concatene los módulos y los ejecute en `vm` con `DateTime` global, con y sin `require` restringido.
-3. `_num` en validar.js: cadena en blanco -> vacío; rechazar hex/exponente en reps/peso. Agregar pruebas.
-4. (Opcional) hallazgo 4.
+### REQUIRED_FIXES
+Ninguno.

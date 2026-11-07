@@ -1,6 +1,6 @@
 # GymProcess — Bot de gimnasio y competencia entre amigos
 
-**Estado (2026-11-07):** T00 hecho (esqueleto). Entrevista ronda 1 cerrada; **ronda 2 abierta** (puntos/metas, privacidad del grupo, retos, tablero con edición). Siguiente: T01 núcleo A.
+**Estado (2026-11-07):** T00 y T01 ✅. T02 (núcleo B, métricas) en curso. **Ronda 2 de la entrevista abierta** (puntos/metas, privacidad del grupo, retos, tablero con edición).
 
 Bot de Telegram → n8n (self-hosted) → Google Sheets → Apps Script (tablero). Para el Ingeniero William Delgado y sus amigos.
 Al retomar una sesión **este archivo es lo primero que se lee**. Reglas para agentes: `AGENTS.md`. Contrato de subflujos: `tareas/CONTRATO.md`.
@@ -88,8 +88,8 @@ Regla: no se pasa a la siguiente sin **APROBADO**; en las que tocan Telegram, ta
 | # | Tarea | Entregable | Quién | Estado |
 |---|---|---|---|---|
 | T00 | Esqueleto: plantilla, agentes, `PROYECTO.md`, `CONTRATO.md`, Luxon | Repo | Arquitecto | ✅ |
-| T01 | Núcleo A — entrada: catálogo y sinónimos (sin tildes), unidades (lb→kg, placas, modalidades), fechas relativas en Bogotá, atajo sin IA para series ("3x10 con 50", "60 kg 10, 9 y 8"), validación del JSON de la IA, `hoja/esquema.json` | `src/nucleo/` + pruebas | ejecutor + auditor | ⏳ |
-| T02 | Núcleo B — métricas: 1RM, volumen, récords, última sesión por grupo, estancados con sugerencias, mejor entrenamiento, asistencia; textos (HTML escapado, corte 4096) | `src/nucleo/` + pruebas | ejecutor + auditor | |
+| T01 | Núcleo A — entrada: catálogo y sinónimos (sin tildes), unidades (lb→kg, placas, modalidades), fechas relativas en Bogotá, atajo sin IA para series ("3x10 con 50", "60 kg 10, 9 y 8"), validación del JSON de la IA, `hoja/esquema.json` | `src/nucleo/` + pruebas | ejecutor + auditor | ✅ |
+| T02 | Núcleo B — métricas: 1RM, volumen, récords, última sesión por grupo, estancados con sugerencias, mejor entrenamiento, asistencia; textos (HTML escapado, corte 4096) | `src/nucleo/` + pruebas | ejecutor + auditor | ⏳ |
 | T03 | Hojas PRUEBAS y real desde el esquema (pestañas, encabezados, validaciones, catálogo) | Hojas + IDs en `docs/ids-y-credenciales.md` | Arquitecto (conector) | |
 | T04 | *Gym - Entrada* + *Gym - Errores*: recibir, invitación/registro, anti-duplicado, "hola", log | JSON + build | ejecutor + auditor | |
 | T05 | *Gym - Registro*: texto → sesión + series, confirmación, faltantes, ↩️/corregir ≤ 3 días | JSON + build | ejecutor + auditor | |
@@ -124,3 +124,4 @@ Regla: no se pasa a la siguiente sin **APROBADO**; en las que tocan Telegram, ta
 | Tarea | Fecha | Resultado | Notas |
 |---|---|---|---|
 | T00 | 2026-11-07 | ✅ | Plantilla copiada (28 skills), agentes `ejecutor-ligero`/`ejecutor`/`auditor`, Luxon instalado por el hook. |
+| T01 | 2026-11-07 | ✅ APROBADO (ciclo 2) | Núcleo A: catálogo semilla (37, provisional), unidades/placas/modalidades, fechas Bogotá, atajo de series, validación sin inventar. 62/62 pruebas. Ciclo 1 rechazado: atajo inventaba reps con "3 series de 10" y el concatenado fallaba con `require` de n8n. Observaciones menores: "10 series 3" se lee 10×3; "plancha 3 series de 45 s" deja segundos vacío (se pregunta). |
