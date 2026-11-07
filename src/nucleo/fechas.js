@@ -88,4 +88,4 @@ function resolverFecha(texto, ahora) {
   return { ok: false, motivo: 'no_entendida' };
 }
 
-if (typeof module !== 'undefined') module.exports = { resolverFecha: resolverFecha, inyectarLuxon: inyectarLuxon };
+if (typeof module !== 'undefined') module.exports = { resolverFecha: resolverFecha, inyectarLuxon: inyectarLuxon, _aDT: _aDT };

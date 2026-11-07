@@ -1,4 +1,4 @@
-// Reexporta todo el núcleo A (entrada).
+// Reexporta el núcleo A (entrada) y B (métricas y textos).
 if (typeof module !== 'undefined') {
   module.exports = Object.assign({},
     require('./texto'),
@@ -6,7 +6,9 @@ if (typeof module !== 'undefined') {
     require('./unidades'),
     require('./fechas'),
     require('./series'),
-    require('./validar')
+    require('./validar'),
+    require('./metricas'),
+    require('./textos')
   );
 }
 

@@ -4,8 +4,11 @@ const fs = require('node:fs');
 const path = require('node:path');
 const n = require('./index');
 
-test('index reexporta todo el núcleo A', () => {
-  for (const k of ['normalizar', 'resolverEjercicio', 'aKg', 'leerPlaca', 'MODALIDADES', 'resolverFecha', 'atajoSeries', 'validarRegistro']) {
+test('index reexporta el núcleo A y B', () => {
+  for (const k of ['normalizar', 'resolverEjercicio', 'aKg', 'leerPlaca', 'MODALIDADES', 'resolverFecha', 'atajoSeries', 'validarRegistro',
+    'num', 'e1rm', 'volumen', 'records', 'ultimaSesionGrupo', 'estancado', 'mejorEntrenamiento', 'asistencia', 'rangoSemana', 'rangoMes',
+    'progreso', 'frecuenciaGrupos', 'fuerzaRelativa', 'escaparHtml', 'formatearKg', 'formatearFecha', 'partirMensaje',
+    'txtConfirmacionRegistro', 'txtFaltantes', 'txtUltimaSesion', 'txtRecords', 'txtEstancado', 'txtProgreso', 'txtSinDatos']) {
     assert.ok(k in n, k);
   }
 });

@@ -10,4 +10,13 @@ function normalizar(s) {
   return t;
 }
 
-if (typeof module !== 'undefined') module.exports = { normalizar: normalizar };
+// Número tolerante: acepta número o texto con coma o punto decimal ("62,5"). Vacío o basura -> null.
+function num(v) {
+  if (typeof v === 'number') return isFinite(v) ? v : null;
+  if (typeof v !== 'string') return null;
+  var t = v.trim();
+  if (!/^-?\d+(?:[.,]\d+)?$/.test(t)) return null;
+  return Number(t.replace(',', '.'));
+}
+
+if (typeof module !== 'undefined') module.exports = { normalizar: normalizar, num: num };
