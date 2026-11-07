@@ -80,3 +80,18 @@ test('tiempo: "plancha 3 series de 45 s", "3x45 s" y lista de segundos; reps que
   assert.deepStrictEqual(atajoSeries('Plancha 45 s, 40 s y 30 s')[0].series.map((s) => s.segundos), [45, 40, 30]);
   assert.strictEqual(atajoSeries('Plancha 45 s con 20 kg'), null);
 });
+test('"N series (de) M" es NxM; nunca cuenta el número de series como reps', () => {
+  const rm = (t) => atajoSeries(t)[0].series.map((s) => [s.pesoKg, s.reps]);
+  assert.deepStrictEqual(rm('press banca 60 kg 3 series de 10'), [[60, 10], [60, 10], [60, 10]]);
+  assert.deepStrictEqual(rm('press banca 60 kg 4 series 10'), [[60, 10], [60, 10], [60, 10], [60, 10]]);
+  assert.deepStrictEqual(rm('curl 3 series 10 20 kg'), [[20, 10], [20, 10], [20, 10]]);
+  assert.strictEqual(atajoSeries('press banca 60 kg 10 reps 3 series'), null);
+  assert.strictEqual(atajoSeries('press banca 60 kg 3 series'), null);
+  assert.strictEqual(atajoSeries('press banca 60 kg 3 series 10 8'), null);
+});
+test('sin unidad de peso y números que parecen peso -> null ("curl 20 10 8")', () => {
+  assert.strictEqual(atajoSeries('curl 20 10 8'), null);
+  assert.strictEqual(atajoSeries('press banca 40 10'), null);
+  assert.ok(atajoSeries('Dominadas 15, 12'));
+  assert.ok(atajoSeries('Press banca 10, 9'));
+});

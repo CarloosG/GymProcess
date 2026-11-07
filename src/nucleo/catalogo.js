@@ -1,5 +1,5 @@
 // Resolución de nombres libres de ejercicio contra el catálogo.
-var _t_cat = (typeof require === 'function') ? require('./texto') : { normalizar: normalizar };
+var _t_cat = (function () { try { return require('./texto'); } catch (e) { return { normalizar: normalizar }; } })();
 
 function _distancia(a, b) {
   if (a === b) return 0;

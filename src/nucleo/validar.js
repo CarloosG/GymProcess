@@ -1,7 +1,7 @@
 // Validación y normalización de un registro de entrenamiento. Nunca rellena peso/reps.
-var _c_val = (typeof require === 'function') ? require('./catalogo') : { resolverEjercicio: resolverEjercicio };
-var _f_val = (typeof require === 'function') ? require('./fechas') : { resolverFecha: resolverFecha };
-var _u_val = (typeof require === 'function') ? require('./unidades') : { aKg: aKg, MODALIDADES: MODALIDADES };
+var _c_val = (function () { try { return require('./catalogo'); } catch (e) { return { resolverEjercicio: resolverEjercicio }; } })();
+var _f_val = (function () { try { return require('./fechas'); } catch (e) { return { resolverFecha: resolverFecha }; } })();
+var _u_val = (function () { try { return require('./unidades'); } catch (e) { return { aKg: aKg, MODALIDADES: MODALIDADES }; } })();
 
 var _LIM = { repsMin: 1, repsMax: 100, pesoMin: 0, pesoMax: 500, placaMin: 1, placaMax: 30, rpeMin: 1, rpeMax: 10, maxSeries: 30, segMin: 1, segMax: 3600 };
 
@@ -9,10 +9,15 @@ function _vacio(v) { return v === null || v === undefined || v === ''; }
 
 // número o null; {error:true} si no es numérico
 function _num(v) {
+  if (typeof v === 'string') {
+    v = v.trim();
+    if (v === '') return null; // en blanco = vacío, nunca 0
+    if (!/^-?\d+(?:[.,]\d+)?$/.test(v)) return { error: true }; // sin hex, exponente ni basura
+    return Number(v.replace(',', '.'));
+  }
   if (_vacio(v)) return null;
-  var n = typeof v === 'string' ? Number(v.replace(',', '.')) : v;
-  if (typeof n !== 'number' || !isFinite(n)) return { error: true };
-  return n;
+  if (typeof v !== 'number' || !isFinite(v)) return { error: true };
+  return v;
 }
 
 function validarRegistro(entrada, catalogo, ahora) {

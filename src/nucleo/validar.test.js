@@ -156,3 +156,20 @@ test('tiempo: rangos y mezclas -> errores', () => {
   assert.strictEqual(e({ segundos: 1 }), 0);
   assert.strictEqual(e({ segundos: 3600 }), 0);
 });
+test('números: en blanco es faltante (nunca 0); hex, exponente y basura son error', () => {
+  const v = (s) => validarRegistro({ ejercicios: [{ nombre: 'Press banca', series: [s] }] }, cat, AHORA);
+  const b = v({ pesoKg: ' ', reps: 5 });
+  assert.strictEqual(b.completo, false);
+  assert.deepStrictEqual(b.faltantes, [{ ejercicio: 'Press banca', serie: 1, campo: 'pesoKg' }]);
+  assert.strictEqual(b.registro.ejercicios[0].series[0].pesoKg, null);
+  const r = v({ pesoKg: 60, reps: '' });
+  assert.deepStrictEqual(r.faltantes, [{ ejercicio: 'Press banca', serie: 1, campo: 'reps' }]);
+  for (const x of ['0x10', '1e1', '0b11', '1_0', 'Infinity', '10abc', true]) {
+    assert.ok(v({ pesoKg: 60, reps: x }).errores.length, 'reps ' + x);
+    assert.ok(v({ pesoKg: x, reps: 5 }).errores.length, 'peso ' + x);
+  }
+  assert.strictEqual(v({ pesoKg: ' 60,5 ', reps: ' 8 ' }).registro.ejercicios[0].series[0].pesoKg, 60.5);
+  const t = validarRegistro({ ejercicios: [{ nombre: 'Plancha', series: [{ segundos: ' ' }, { segundos: '0x10' }] }] }, cat, AHORA);
+  assert.deepStrictEqual(t.faltantes, [{ ejercicio: 'Plancha', serie: 1, campo: 'segundos' }]);
+  assert.ok(t.errores.length);
+});

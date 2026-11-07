@@ -1,8 +1,8 @@
 // Atajo sin IA para patrones frecuentes de registro de series.
 // Devuelve [{ejercicioTexto, series:[{n, unidad, pesoKg, placa, modalidad, reps, [segundos], [convertido]}]}] o null si no está seguro.
-var _t_ser = (typeof require === 'function') ? require('./texto') : { normalizar: normalizar };
-var _u_ser = (typeof require === 'function') ? require('./unidades') : { aKg: aKg, buscarPlaca: buscarPlaca };
-var _c_ser = (typeof require === 'function') ? require('./catalogo') : { resolverEjercicio: resolverEjercicio };
+var _t_ser = (function () { try { return require('./texto'); } catch (e) { return { normalizar: normalizar }; } })();
+var _u_ser = (function () { try { return require('./unidades'); } catch (e) { return { aKg: aKg, buscarPlaca: buscarPlaca }; } })();
+var _c_ser = (function () { try { return require('./catalogo'); } catch (e) { return { resolverEjercicio: resolverEjercicio }; } })();
 
 var _UNI_RE = '(kg|kgs|kilos?|kilogramos?|lb|lbs|libras?)';
 var _CORPORAL_RE = /^(dominadas?|fondos|flexiones|pull ?ups?|chin ?ups?|lagartijas|paralelas)\b/;
@@ -23,6 +23,12 @@ function _esPalabraFrontera(tok, sig) {
       sig && /^(placas?|plaquetas?|plaquitas?)$/.test(sig)) return true;
   if (tok === 'la' && sig && /^(primera|segunda|tercera|cuarta|quinta|sexta|septima|octava|novena|decima)$/.test(sig)) return true;
   return false;
+}
+
+function _esCorporal(nombre, catalogo) {
+  var res = catalogo ? _c_ser.resolverEjercicio(nombre, catalogo) : null;
+  if (res && res.ejercicio) return res.ejercicio.tipo === 'peso corporal';
+  return _CORPORAL_RE.test(_base(nombre));
 }
 
 function _parsearSegmento(seg, catalogo) {
@@ -89,6 +95,10 @@ function _parsearSegmento(seg, catalogo) {
     };
   }
 
+  // "3 series de 10" / "3 series 10" = 3x10; cualquier otro "series" suelto es ambiguo -> null
+  r = r.replace(/(\d+)\s*series?\s*(?:de\s*)?(\d+)(?!\d)/, ' $1x$2 ');
+  if (/\d\s*series?\b|\bseries?\s*\d/.test(r)) return null;
+
   var nSeries = null, repsFijas = null;
   var mx = /(\d+)\s*[x×]\s*(\d+)/.exec(r);
   if (mx) {
@@ -114,13 +124,13 @@ function _parsearSegmento(seg, catalogo) {
     reps = nums.map(function (x) { return parseInt(x, 10); });
   }
   for (var q = 0; q < reps.length; q++) if (reps[q] < 1 || reps[q] > _MAX_REPS_ATAJO) return null;
+  // sin unidad de peso ni placa y con números que parecen peso ("curl 20 10 8"): no adivina
+  if (!hayPeso && placa === null && modalidad === null && repsFijas === null &&
+      reps.some(function (x) { return x > 12; }) && !_esCorporal(nombre, catalogo)) return null;
 
   // modalidad
   if (modalidad === null) {
-    var corporal = false;
-    var res = catalogo ? _c_ser.resolverEjercicio(nombre, catalogo) : null;
-    if (res && res.ejercicio) corporal = res.ejercicio.tipo === 'peso corporal';
-    else corporal = _CORPORAL_RE.test(_base(nombre));
+    var corporal = _esCorporal(nombre, catalogo);
     modalidad = (corporal && !hayPeso && placa === null) ? 'corporal' : 'normal';
   }
 

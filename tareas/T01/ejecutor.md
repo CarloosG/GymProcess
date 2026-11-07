@@ -122,3 +122,17 @@ $ git status --short
 ?? src/
 ?? tareas/T01/ejecutor.md
 ```
+
+## AJUSTES v3 (auditoría ciclo 1)
+1. atajoSeries: "N series (de) M" se interpreta como NxM ("press banca 60 kg 3 series de 10" -> 3x10 a 60 kg; "curl 3 series 10 20 kg" -> 3x10 a 20 kg). Cualquier otro "series" suelto ("10 reps 3 series", "3 series" sin reps, "3 series 10 8") -> null. Nunca se cuenta como reps.
+2. Módulos sin dependencia de `require` relativo: cada dependencia se obtiene con `try { require('./x') } catch { símbolo global }`. Luxon: global `DateTime` primero, luego require en try/catch. Nueva concat.test.js: concatena los módulos y los corre en `node:vm` (a) sin require, (b) con require que lanza para toda ruta, (c) con require que solo resuelve luxon; todos con DateTime global. Comprobado que la prueba (b) falla si se restaura el require relativo en catalogo.js y pasa con el arreglo.
+3. validar.js `_num` (y aKg): cadena en blanco -> vacío (faltante, nunca 0); solo decimales simples (`-?\d+([.,]\d+)?`); "0x10", "1e1", "0b11", "1_0", "Infinity", "10abc" y booleanos -> error. Aplica a peso, reps, segundos, placa y RPE.
+4. atajoSeries: sin peso/placa y con algún número > 12 en ejercicio no corporal ("curl 20 10 8", "press banca 40 10") -> null. "Press banca 10, 9" y "Dominadas 15, 12" siguen igual.
+Nota: las pruebas de 1, 3 y 4 se escribieron junto con el arreglo (no vi el rojo previo salvo en 2, que sí verifiqué revirtiendo); los casos son los reproducidos por el auditor.
+
+```
+$ node --test "src/nucleo/**/*.test.js"
+# tests 62
+# pass 62
+# fail 0
+```

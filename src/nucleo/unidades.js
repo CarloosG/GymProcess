@@ -12,7 +12,8 @@ function _normUnidad(u) {
 
 // Devuelve {kg, convertido}. Unidad o valor no válidos -> {kg:null, convertido:false}.
 function aKg(valor, unidad) {
-  var v = typeof valor === 'string' ? Number(valor.replace(',', '.')) : valor;
+  var v = valor;
+  if (typeof valor === 'string') v = /^\s*-?\d+(?:[.,]\d+)?\s*$/.test(valor) ? Number(valor.replace(',', '.')) : NaN;
   if (typeof v !== 'number' || !isFinite(v)) return { kg: null, convertido: false };
   var u = _normUnidad(unidad);
   if (_UNI_KG.indexOf(u) !== -1) return { kg: v, convertido: false };
