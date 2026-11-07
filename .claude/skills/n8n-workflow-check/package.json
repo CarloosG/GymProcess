@@ -1,0 +1,8 @@
+{
+  "name": "n8n-workflow-check",
+  "private": true,
+  "description": "Dependencias del simulador de nodos Code (Luxon, como en n8n).",
+  "dependencies": {
+    "luxon": "^3.7.2"
+  }
+}

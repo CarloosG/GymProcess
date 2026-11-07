@@ -1,0 +1,5 @@
+.env
+*.local.json
+node_modules/
+*.xlsx
+__pycache__/
