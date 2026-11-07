@@ -48,3 +48,4 @@ Lo que **todo** módulo del núcleo y todo subflujo debe cumplir. Se cambia solo
 ## Enmiendas
 1. **E1 (2026-11-07):** el comando de pruebas es `node --test "src/nucleo/**/*.test.js"` (Node 22 no recorre un directorio pasado como argumento). Prohibido cargar pruebas desde `index.js`.
 2. **E2 (2026-11-07):** encabezados simples, sin aclaraciones entre paréntesis: `ID usuario` (= chat_id), `Ejercicio` (nombre canónico). *Series* agrega la columna `Segundos` para ejercicios de tipo `tiempo` (en ellos `Reps` queda vacío).
+3. **E3 (2026-11-07):** anular una sesión anula también **todas** sus series (y viceversa: si se anulan todas las series de una sesión, se anula la sesión), en la misma escritura en lote y con una fila en *Cambios* por cada registro. Así ninguna métrica cuenta series huérfanas.
