@@ -11,7 +11,7 @@ Lo que **todo** módulo del núcleo y todo subflujo debe cumplir. Se cambia solo
 
 ## 2. Datos
 - Pestañas y columnas: las de `PROYECTO.md §3` (y `hoja/esquema.json` cuando exista). No se renombran; solo se agregan columnas al final.
-- Escritura: `values:append` con `INSERT_ROWS` y `valueInputOption=RAW`; fechas `AAAA-MM-DD`; pesos como número; texto protegido con `limpio()` (prefijo `'` si empieza con `= + @`).
+- Escritura: `values:append` con `INSERT_ROWS` y `valueInputOption=RAW`; fechas `AAAA-MM-DD`; pesos como número; texto tal cual (ver E5).
 - Lectura: una sola por ejecución, `values:batchGet` con `UNFORMATTED_VALUE` + `FORMATTED_STRING`. Se valida que existan todas las pestañas; si falta una, se avisa **cuál**.
 - Nada se borra: `Estado registro = Anulado` + fila en *Cambios*.
 - Cada fila nueva lleva el `ID mensaje` (Telegram `message_id`) que la creó. Las métricas excluyen filas anuladas.
@@ -50,3 +50,4 @@ Lo que **todo** módulo del núcleo y todo subflujo debe cumplir. Se cambia solo
 2. **E2 (2026-11-07):** encabezados simples, sin aclaraciones entre paréntesis: `ID usuario` (= chat_id), `Ejercicio` (nombre canónico). *Series* agrega la columna `Segundos` para ejercicios de tipo `tiempo` (en ellos `Reps` queda vacío).
 3. **E3 (2026-11-07):** anular una sesión anula también **todas** sus series (y viceversa: si se anulan todas las series de una sesión, se anula la sesión), en la misma escritura en lote y con una fila en *Cambios* por cada registro. Así ninguna métrica cuenta series huérfanas.
 4. **E4 (2026-11-07):** *Usuarios* agrega al final la columna `Rol` (`admin`/`usuario`). Los avisos de errores van a los usuarios con `Rol = admin` leídos de la hoja: ningún chat_id en JSON. El ID de la hoja (no secreto) va en un nodo *Config* al inicio de cada flujo, para cambiar PRUEBAS ↔ real en un solo lugar. Las actualizaciones de estado (p. ej. Invitaciones.Estado) se hacen por ID ubicando la fila en la lectura única (nunca se borran filas, así que el número de fila es estable dentro de la ejecución).
+5. **E5 (2026-11-07):** con `valueInputOption=RAW` Sheets no interpreta fórmulas ni fechas, así que **no** se antepone `'` (quedaría visible en el dato). `limpio()` solo recorta espacios y quita caracteres de control; no altera el contenido. Si algún día se usa `USER_ENTERED`, se reintroduce la protección.

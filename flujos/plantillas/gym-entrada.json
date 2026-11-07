@@ -1,0 +1,365 @@
+{
+  "name": "Gym - Entrada",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "id": "7f3a1c10-0001-4b2a-9c11-a00000000001",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        300
+      ],
+      "webhookId": "5d0b7e42-8a3c-4f55-b6a1-2c9e4d7f1a01",
+      "credentials": {
+        "telegramApi": {
+          "id": "PENDIENTE_TELEGRAM",
+          "name": "Telegram Gym (reasignar al importar)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a1b2c3d4-0001-4000-8000-0000000000c1",
+              "name": "hojaId",
+              "value": "PENDIENTE_ID_HOJA",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "7f3a1c10-0002-4b2a-9c11-a00000000002",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "@@codigo:src/code/entrada/normalizar.js@@"
+      },
+      "id": "7f3a1c10-0003-4b2a-9c11-a00000000003",
+      "name": "Normalizar",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a1b2c3d4-0002-4000-8000-0000000000c2",
+              "leftValue": "={{ $json.ignorar }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "7f3a1c10-0004-4b2a-9c11-a00000000004",
+      "name": "Anti-bucle",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        660,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7f3a1c10-0005-4b2a-9c11-a00000000005",
+      "name": "Ignorar",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        880,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "@@url_batchget@@",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleSheetsOAuth2Api",
+        "options": {}
+      },
+      "id": "7f3a1c10-0006-4b2a-9c11-a00000000006",
+      "name": "Leer hoja",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        880,
+        240
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PENDIENTE_SHEETS",
+          "name": "Google Sheets OAuth2 (reasignar al importar)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "@@codigo:src/code/entrada/tablas.js@@"
+      },
+      "id": "7f3a1c10-0007-4b2a-9c11-a00000000007",
+      "name": "Tablas",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "@@codigo:src/code/entrada/plan.js@@"
+      },
+      "id": "7f3a1c10-0008-4b2a-9c11-a00000000008",
+      "name": "Plan",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "@@codigo:src/code/entrada/solicitudes.js@@"
+      },
+      "id": "7f3a1c10-0009-4b2a-9c11-a00000000009",
+      "name": "Solicitudes",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1540,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleSheetsOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.body) }}",
+        "options": {}
+      },
+      "id": "7f3a1c10-0010-4b2a-9c11-a00000000010",
+      "name": "Escribir hoja",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        1760,
+        240
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PENDIENTE_SHEETS",
+          "name": "Google Sheets OAuth2 (reasignar al importar)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "@@codigo:src/code/entrada/mensajes.js@@"
+      },
+      "id": "7f3a1c10-0011-4b2a-9c11-a00000000011",
+      "name": "Mensajes",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1980,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chat_id }}",
+        "text": "={{ $json.texto }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "7f3a1c10-0012-4b2a-9c11-a00000000012",
+      "name": "Responder",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2200,
+        240
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "PENDIENTE_TELEGRAM",
+          "name": "Telegram Gym (reasignar al importar)"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Normalizar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalizar": {
+      "main": [
+        [
+          {
+            "node": "Anti-bucle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anti-bucle": {
+      "main": [
+        [
+          {
+            "node": "Leer hoja",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ignorar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leer hoja": {
+      "main": [
+        [
+          {
+            "node": "Tablas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tablas": {
+      "main": [
+        [
+          {
+            "node": "Plan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Plan": {
+      "main": [
+        [
+          {
+            "node": "Solicitudes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Solicitudes": {
+      "main": [
+        [
+          {
+            "node": "Escribir hoja",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escribir hoja": {
+      "main": [
+        [
+          {
+            "node": "Mensajes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensajes": {
+      "main": [
+        [
+          {
+            "node": "Responder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Bogota",
+    "errorWorkflow": "PENDIENTE_ID_ERRORES"
+  }
+}

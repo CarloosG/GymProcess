@@ -1,0 +1,245 @@
+[
+  {
+    "nombre": "usuario activo dice \"hola\"",
+    "tipo": "valido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {
+        "update_id": 6000,
+        "hojaId": "HOJA_DE_PRUEBA",
+        "message": {
+          "message_id": 6100,
+          "text": "hola",
+          "date": 1790000000,
+          "chat": {
+            "id": 1001,
+            "type": "private"
+          },
+          "from": {
+            "id": 1001,
+            "is_bot": false,
+            "first_name": "Ana",
+            "language_code": "es",
+            "last_name": "Prueba"
+          }
+        }
+      }
+    ],
+    "espera": {
+      "cantidad": 1,
+      "salida": [
+        {
+          "chat_id": 1001,
+          "texto": "hola",
+          "tipo": "texto",
+          "update_id": 6000,
+          "message_id": 6100,
+          "ignorar": false,
+          "is_bot": false,
+          "nombre": "Ana Prueba"
+        }
+      ],
+      "no_contiene": [
+        "undefined",
+        "NaN"
+      ]
+    }
+  },
+  {
+    "nombre": "registro con /start <código>",
+    "tipo": "valido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {
+        "update_id": 6001,
+        "hojaId": "HOJA_DE_PRUEBA",
+        "message": {
+          "message_id": 6101,
+          "text": "/start GYM-AAA111",
+          "date": 1790000000,
+          "chat": {
+            "id": 2002,
+            "type": "private"
+          },
+          "from": {
+            "id": 2002,
+            "is_bot": false,
+            "first_name": "Luis",
+            "language_code": "es"
+          }
+        }
+      }
+    ],
+    "espera": {
+      "cantidad": 1,
+      "salida": [
+        {
+          "tipo": "comando",
+          "texto": "/start GYM-AAA111",
+          "ignorar": false
+        }
+      ]
+    }
+  },
+  {
+    "nombre": "mensaje de un bot se ignora",
+    "tipo": "invalido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {
+        "update_id": 6002,
+        "hojaId": "HOJA_DE_PRUEBA",
+        "message": {
+          "message_id": 6102,
+          "text": "hola",
+          "date": 1790000000,
+          "chat": {
+            "id": 777,
+            "type": "private"
+          },
+          "from": {
+            "id": 777,
+            "is_bot": true,
+            "first_name": "Robot",
+            "language_code": "es"
+          }
+        }
+      }
+    ],
+    "espera": {
+      "cantidad": 1,
+      "salida": [
+        {
+          "ignorar": true,
+          "motivo_ignorar": "bot",
+          "is_bot": true
+        }
+      ]
+    }
+  },
+  {
+    "nombre": "chat de grupo se ignora",
+    "tipo": "invalido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {
+        "update_id": 6003,
+        "hojaId": "HOJA_DE_PRUEBA",
+        "message": {
+          "message_id": 6103,
+          "text": "hola",
+          "date": 1790000000,
+          "chat": {
+            "id": -1001234,
+            "type": "supergroup"
+          },
+          "from": {
+            "id": 2002,
+            "is_bot": false,
+            "first_name": "Luis",
+            "language_code": "es"
+          }
+        }
+      }
+    ],
+    "espera": {
+      "cantidad": 1,
+      "salida": [
+        {
+          "ignorar": true,
+          "motivo_ignorar": "chat_no_privado"
+        }
+      ]
+    }
+  },
+  {
+    "nombre": "update vacío no revienta",
+    "tipo": "invalido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {}
+    ],
+    "espera": {
+      "cantidad": 1,
+      "salida": [
+        {
+          "ignorar": true,
+          "motivo_ignorar": "sin_chat"
+        }
+      ]
+    }
+  },
+  {
+    "nombre": "botón (callback_query)",
+    "tipo": "valido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {
+        "update_id": 6004,
+        "callback_query": {
+          "id": "cb1",
+          "data": "pc:AB12:si",
+          "from": {
+            "id": 1001,
+            "is_bot": false,
+            "first_name": "Ana",
+            "language_code": "es"
+          },
+          "message": {
+            "message_id": 55,
+            "chat": {
+              "id": 1001,
+              "type": "private"
+            }
+          }
+        }
+      }
+    ],
+    "espera": {
+      "cantidad": 1,
+      "salida": [
+        {
+          "tipo": "boton",
+          "texto": "pc:AB12:si",
+          "chat_id": 1001
+        }
+      ]
+    }
+  },
+  {
+    "nombre": "mismo update repetido da la misma salida (el anti-duplicado lo decide Plan)",
+    "tipo": "duplicado",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {
+        "update_id": 6000,
+        "hojaId": "HOJA_DE_PRUEBA",
+        "message": {
+          "message_id": 6100,
+          "text": "hola",
+          "date": 1790000000,
+          "chat": {
+            "id": 1001,
+            "type": "private"
+          },
+          "from": {
+            "id": 1001,
+            "is_bot": false,
+            "first_name": "Ana",
+            "language_code": "es",
+            "last_name": "Prueba"
+          }
+        }
+      }
+    ],
+    "espera": {
+      "cantidad": 1,
+      "salida": [
+        {
+          "update_id": 6000,
+          "chat_id": 1001
+        }
+      ]
+    }
+  }
+]

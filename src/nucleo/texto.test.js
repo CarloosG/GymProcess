@@ -16,3 +16,17 @@ test('normalizar: borde (puntuación de borde sí, interna se conserva)', () => 
   assert.strictEqual(normalizar('pull-over.'), 'pull-over');
   assert.strictEqual(normalizar(12), '12');
 });
+
+test('limpio: válido, inválido y borde', () => {
+  const { limpio } = require('./texto');
+  assert.strictEqual(limpio('Ana'), 'Ana');
+  assert.strictEqual(limpio('=SUM(A1)'), "'=SUM(A1)");
+  assert.strictEqual(limpio('+57 300'), "'+57 300");
+  assert.strictEqual(limpio('@ana'), "'@ana");
+  assert.strictEqual(limpio('1/2'), "'1/2");
+  assert.strictEqual(limpio(62.5), 62.5);
+  assert.strictEqual(limpio(null), '');
+  assert.strictEqual(limpio(undefined), '');
+  assert.strictEqual(limpio(''), '');
+  assert.strictEqual(limpio('Press 1/2 banca'), 'Press 1/2 banca');
+});

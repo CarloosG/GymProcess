@@ -1,0 +1,338 @@
+[
+  {
+    "nombre": "un admin activo recibe el aviso",
+    "tipo": "valido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {
+        "range": "Usuarios!A1:I1000",
+        "majorDimension": "ROWS",
+        "values": [
+          [
+            "ID usuario",
+            "Alias",
+            "Nombre",
+            "Peso corporal (kg)",
+            "Fecha peso",
+            "Invitado por",
+            "Activo",
+            "Registrado",
+            "Rol"
+          ],
+          [
+            1001,
+            "Ana",
+            "Ana",
+            "",
+            "",
+            9001,
+            "Sí",
+            "",
+            "usuario"
+          ],
+          [
+            9001,
+            "Admin",
+            "Admin",
+            "",
+            "",
+            "",
+            "Sí",
+            "",
+            "admin"
+          ],
+          [
+            9002,
+            "Ex",
+            "Ex",
+            "",
+            "",
+            "",
+            "No",
+            "",
+            "admin"
+          ]
+        ]
+      }
+    ],
+    "nodos": {
+      "Error Trigger": [
+        {
+          "execution": {
+            "id": "231",
+            "url": "https://n8n.ejemplo/execution/231",
+            "lastNodeExecuted": "Escribir hoja",
+            "mode": "trigger",
+            "error": {
+              "message": "The service was not able to process your request",
+              "name": "NodeApiError"
+            }
+          },
+          "workflow": {
+            "id": "wf1",
+            "name": "Gym - Entrada"
+          }
+        }
+      ]
+    },
+    "espera": {
+      "cantidad": 1,
+      "salida": [
+        {
+          "chat_id": 9001
+        }
+      ],
+      "contiene": [
+        "Gym - Entrada",
+        "Escribir hoja",
+        "Ejecución: 231",
+        "not able to process"
+      ],
+      "no_contiene": [
+        "1001",
+        "9002",
+        "undefined"
+      ]
+    }
+  },
+  {
+    "nombre": "mensaje de error con <b>& se escapa",
+    "tipo": "valido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {
+        "values": [
+          [
+            "ID usuario",
+            "Alias",
+            "Nombre",
+            "Peso corporal (kg)",
+            "Fecha peso",
+            "Invitado por",
+            "Activo",
+            "Registrado",
+            "Rol"
+          ],
+          [
+            1001,
+            "Ana",
+            "Ana",
+            "",
+            "",
+            9001,
+            "Sí",
+            "",
+            "usuario"
+          ],
+          [
+            9001,
+            "Admin",
+            "Admin",
+            "",
+            "",
+            "",
+            "Sí",
+            "",
+            "admin"
+          ],
+          [
+            9002,
+            "Ex",
+            "Ex",
+            "",
+            "",
+            "",
+            "No",
+            "",
+            "admin"
+          ]
+        ]
+      }
+    ],
+    "nodos": {
+      "Error Trigger": [
+        {
+          "execution": {
+            "id": "231",
+            "url": "https://n8n.ejemplo/execution/231",
+            "lastNodeExecuted": "Escribir hoja",
+            "mode": "trigger",
+            "error": {
+              "message": "falló <b>x</b> & más",
+              "name": "NodeApiError"
+            }
+          },
+          "workflow": {
+            "id": "wf1",
+            "name": "Gym - Entrada"
+          }
+        }
+      ]
+    },
+    "espera": {
+      "cantidad": 1,
+      "contiene": [
+        "falló &lt;b&gt;x&lt;/b&gt; &amp; más"
+      ],
+      "no_contiene": [
+        "<b>x</b>"
+      ]
+    }
+  },
+  {
+    "nombre": "sin admins: no falla y no envía",
+    "tipo": "invalido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {
+        "values": [
+          [
+            "ID usuario",
+            "Alias",
+            "Nombre",
+            "Peso corporal (kg)",
+            "Fecha peso",
+            "Invitado por",
+            "Activo",
+            "Registrado",
+            "Rol"
+          ]
+        ]
+      }
+    ],
+    "nodos": {
+      "Error Trigger": [
+        {
+          "execution": {
+            "id": "231",
+            "url": "https://n8n.ejemplo/execution/231",
+            "lastNodeExecuted": "Escribir hoja",
+            "mode": "trigger",
+            "error": {
+              "message": "x",
+              "name": "NodeApiError"
+            }
+          },
+          "workflow": {
+            "id": "wf1",
+            "name": "Gym - Entrada"
+          }
+        }
+      ]
+    },
+    "espera": {
+      "cantidad": 0
+    }
+  },
+  {
+    "nombre": "hoja sin datos (respuesta sin values)",
+    "tipo": "invalido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {
+        "range": "Usuarios!A1:I1000"
+      }
+    ],
+    "nodos": {
+      "Error Trigger": [
+        {
+          "execution": {
+            "id": "231",
+            "url": "https://n8n.ejemplo/execution/231",
+            "lastNodeExecuted": "Escribir hoja",
+            "mode": "trigger",
+            "error": {
+              "message": "x",
+              "name": "NodeApiError"
+            }
+          },
+          "workflow": {
+            "id": "wf1",
+            "name": "Gym - Entrada"
+          }
+        }
+      ]
+    },
+    "espera": {
+      "cantidad": 0
+    }
+  },
+  {
+    "nombre": "mismo error otra vez: mismo aviso (sin estado oculto)",
+    "tipo": "duplicado",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {
+        "values": [
+          [
+            "ID usuario",
+            "Alias",
+            "Nombre",
+            "Peso corporal (kg)",
+            "Fecha peso",
+            "Invitado por",
+            "Activo",
+            "Registrado",
+            "Rol"
+          ],
+          [
+            1001,
+            "Ana",
+            "Ana",
+            "",
+            "",
+            9001,
+            "Sí",
+            "",
+            "usuario"
+          ],
+          [
+            9001,
+            "Admin",
+            "Admin",
+            "",
+            "",
+            "",
+            "Sí",
+            "",
+            "admin"
+          ],
+          [
+            9002,
+            "Ex",
+            "Ex",
+            "",
+            "",
+            "",
+            "No",
+            "",
+            "admin"
+          ]
+        ]
+      }
+    ],
+    "nodos": {
+      "Error Trigger": [
+        {
+          "execution": {
+            "id": "231",
+            "url": "https://n8n.ejemplo/execution/231",
+            "lastNodeExecuted": "Escribir hoja",
+            "mode": "trigger",
+            "error": {
+              "message": "x",
+              "name": "NodeApiError"
+            }
+          },
+          "workflow": {
+            "id": "wf1",
+            "name": "Gym - Entrada"
+          }
+        }
+      ]
+    },
+    "espera": {
+      "cantidad": 1
+    }
+  }
+]

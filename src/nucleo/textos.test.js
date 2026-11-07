@@ -175,3 +175,15 @@ test('txtSinDatos escapa y tolera vacío', () => {
   assert.match(t.txtSinDatos(''), /de eso/);
   assert.match(t.txtSinDatos(undefined), /de eso/);
 });
+
+test('txtHola / txtBienvenida / txtPedirCodigo: escapan y no revelan nada', () => {
+  assert.ok(t.txtHola('Ana').includes('Hola, <b>Ana</b>'));
+  assert.ok(t.txtHola('Ana').includes('próxima versión'));
+  assert.ok(t.txtHola('<b>&').includes('&lt;b&gt;&amp;'));
+  assert.ok(!/<b>&</.test(t.txtHola('<b>&')));
+  assert.ok(t.txtHola('').includes('amigo'));
+  assert.ok(t.txtHola(null).includes('amigo'));
+  assert.ok(t.txtBienvenida('Luis').includes('Bienvenido, <b>Luis</b>'));
+  assert.strictEqual(t.txtPedirCodigo(), 'Para usar el bot pide un código de invitación.');
+  assert.ok(balanceado(t.txtHola('x < y & z')));
+});

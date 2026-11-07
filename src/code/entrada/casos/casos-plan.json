@@ -1,0 +1,303 @@
+[
+  {
+    "nombre": "usuario activo dice \"hola\"",
+    "tipo": "valido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": "@tablas.json",
+    "nodos": {
+      "Normalizar": [
+        {
+          "update_id": 6001,
+          "chat_id": 1001,
+          "nombre": "Luis Prueba",
+          "alias_tg": "Luis",
+          "username": "luis_p",
+          "texto": "hola",
+          "tipo": "texto",
+          "message_id": 6101,
+          "recibido_ms": 1794079800000,
+          "ignorar": false
+        }
+      ]
+    },
+    "espera": {
+      "no_contiene": [
+        "undefined",
+        "NaN"
+      ],
+      "cantidad": 1,
+      "salida": [
+        {
+          "intencion": "hola",
+          "resultado": "ok",
+          "ops": [
+            {
+              "tabla": "Log Bot",
+              "tipo": "append"
+            }
+          ]
+        }
+      ],
+      "contiene": [
+        "Hola, <b>Ana</b>",
+        "próxima versión"
+      ]
+    }
+  },
+  {
+    "nombre": "registro con código válido",
+    "tipo": "valido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": "@tablas.json",
+    "nodos": {
+      "Normalizar": [
+        {
+          "update_id": 6001,
+          "chat_id": 2002,
+          "nombre": "Luis Prueba",
+          "alias_tg": "Luis",
+          "username": "luis_p",
+          "texto": "/start GYM-AAA111",
+          "tipo": "texto",
+          "message_id": 6101,
+          "recibido_ms": 0,
+          "ignorar": false
+        }
+      ]
+    },
+    "espera": {
+      "no_contiene": [
+        "undefined",
+        "NaN"
+      ],
+      "cantidad": 1,
+      "salida": [
+        {
+          "resultado": "registrado",
+          "ops": [
+            {
+              "tabla": "Usuarios",
+              "tipo": "append"
+            },
+            {
+              "tabla": "Invitaciones",
+              "tipo": "update",
+              "fila": 2,
+              "cambios": {
+                "Estado": "Usado",
+                "Usado por": 2002,
+                "Fecha uso": "2026-11-07"
+              }
+            },
+            {
+              "tabla": "Log Bot"
+            }
+          ]
+        }
+      ],
+      "contiene": [
+        "Bienvenido, <b>Luis</b>",
+        "\"Invitado por\":9001",
+        "\"Rol\":\"usuario\""
+      ]
+    }
+  },
+  {
+    "nombre": "código ya usado",
+    "tipo": "invalido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": "@tablas.json",
+    "nodos": {
+      "Normalizar": [
+        {
+          "update_id": 6001,
+          "chat_id": 2002,
+          "nombre": "Luis Prueba",
+          "alias_tg": "Luis",
+          "username": "luis_p",
+          "texto": "/start GYM-BBB222",
+          "tipo": "texto",
+          "message_id": 6101,
+          "recibido_ms": 0,
+          "ignorar": false
+        }
+      ]
+    },
+    "espera": {
+      "no_contiene": [
+        "Usuarios",
+        "Invitaciones"
+      ],
+      "cantidad": 1,
+      "salida": [
+        {
+          "resultado": "codigo_invalido",
+          "respuesta": "Para usar el bot pide un código de invitación."
+        }
+      ]
+    }
+  },
+  {
+    "nombre": "sin código",
+    "tipo": "invalido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": "@tablas.json",
+    "nodos": {
+      "Normalizar": [
+        {
+          "update_id": 6001,
+          "chat_id": 2002,
+          "nombre": "Luis Prueba",
+          "alias_tg": "Luis",
+          "username": "luis_p",
+          "texto": "hola, quiero entrar",
+          "tipo": "texto",
+          "message_id": 6101,
+          "recibido_ms": 0,
+          "ignorar": false
+        }
+      ]
+    },
+    "espera": {
+      "no_contiene": [
+        "\"tabla\":\"Usuarios\""
+      ],
+      "cantidad": 1,
+      "salida": [
+        {
+          "resultado": "sin_codigo",
+          "respuesta": "Para usar el bot pide un código de invitación."
+        }
+      ]
+    }
+  },
+  {
+    "nombre": "código que no existe (no se revela nada)",
+    "tipo": "invalido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": "@tablas.json",
+    "nodos": {
+      "Normalizar": [
+        {
+          "update_id": 6001,
+          "chat_id": 2002,
+          "nombre": "Luis Prueba",
+          "alias_tg": "Luis",
+          "username": "luis_p",
+          "texto": "/start XXXX",
+          "tipo": "texto",
+          "message_id": 6101,
+          "recibido_ms": 0,
+          "ignorar": false
+        }
+      ]
+    },
+    "espera": {
+      "no_contiene": [
+        "GYM-"
+      ],
+      "cantidad": 1,
+      "salida": [
+        {
+          "respuesta": "Para usar el bot pide un código de invitación."
+        }
+      ]
+    }
+  },
+  {
+    "nombre": "DUPLICADO: update_id ya está en Log Bot",
+    "tipo": "duplicado",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": "@tablas.json",
+    "nodos": {
+      "Normalizar": [
+        {
+          "update_id": 5000,
+          "chat_id": 1001,
+          "nombre": "Luis Prueba",
+          "alias_tg": "Luis",
+          "username": "luis_p",
+          "texto": "hola",
+          "tipo": "texto",
+          "message_id": 6101,
+          "recibido_ms": 0,
+          "ignorar": false
+        }
+      ]
+    },
+    "espera": {
+      "no_contiene": [
+        "undefined",
+        "NaN"
+      ],
+      "cantidad": 0
+    }
+  },
+  {
+    "nombre": "texto con <b>& en el nombre se escapa",
+    "tipo": "valido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": "@tablas.json",
+    "nodos": {
+      "Normalizar": [
+        {
+          "update_id": 6001,
+          "chat_id": 2002,
+          "nombre": "<b>&",
+          "alias_tg": "<b>&",
+          "username": "luis_p",
+          "texto": "/start GYM-AAA111",
+          "tipo": "texto",
+          "message_id": 6101,
+          "recibido_ms": 0,
+          "ignorar": false
+        }
+      ]
+    },
+    "espera": {
+      "no_contiene": [
+        "<b>&<",
+        "Hola, <b><b>"
+      ],
+      "cantidad": 1,
+      "contiene": [
+        "&lt;b&gt;&amp;"
+      ]
+    }
+  },
+  {
+    "nombre": "usuario inactivo con código válido",
+    "tipo": "invalido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": "@tablas.json",
+    "nodos": {
+      "Normalizar": [
+        {
+          "update_id": 6001,
+          "chat_id": 1003,
+          "nombre": "Luis Prueba",
+          "alias_tg": "Luis",
+          "username": "luis_p",
+          "texto": "/start GYM-AAA111",
+          "tipo": "texto",
+          "message_id": 6101,
+          "recibido_ms": 0,
+          "ignorar": false
+        }
+      ]
+    },
+    "espera": {
+      "no_contiene": [
+        "undefined",
+        "NaN"
+      ],
+      "cantidad": 1,
+      "salida": [
+        {
+          "resultado": "usuario_inactivo",
+          "respuesta": "Para usar el bot pide un código de invitación."
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,83 @@
+[
+  {
+    "nombre": "respuesta corta",
+    "tipo": "valido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {}
+    ],
+    "nodos": {
+      "Plan": [
+        {
+          "chat_id": 1001,
+          "respuesta": "Hola, <b>Ana</b>."
+        }
+      ]
+    },
+    "espera": {
+      "cantidad": 1,
+      "salida": [
+        {
+          "chat_id": 1001,
+          "texto": "Hola, <b>Ana</b>."
+        }
+      ]
+    }
+  },
+  {
+    "nombre": "respuesta de 9000 caracteres se parte",
+    "tipo": "valido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {}
+    ],
+    "nodos": {
+      "Plan": [
+        {
+          "chat_id": 1001,
+          "respuesta": "línea 0\nlínea 1\nlínea 2\nlínea 3\nlínea 4\nlínea 5\nlínea 6\nlínea 7\nlínea 8\nlínea 9\nlínea 10\nlínea 11\nlínea 12\nlínea 13\nlínea 14\nlínea 15\nlínea 16\nlínea 17\nlínea 18\nlínea 19\nlínea 20\nlínea 21\nlínea 22\nlínea 23\nlínea 24\nlínea 25\nlínea 26\nlínea 27\nlínea 28\nlínea 29\nlínea 30\nlínea 31\nlínea 32\nlínea 33\nlínea 34\nlínea 35\nlínea 36\nlínea 37\nlínea 38\nlínea 39\nlínea 40\nlínea 41\nlínea 42\nlínea 43\nlínea 44\nlínea 45\nlínea 46\nlínea 47\nlínea 48\nlínea 49\nlínea 50\nlínea 51\nlínea 52\nlínea 53\nlínea 54\nlínea 55\nlínea 56\nlínea 57\nlínea 58\nlínea 59\nlínea 60\nlínea 61\nlínea 62\nlínea 63\nlínea 64\nlínea 65\nlínea 66\nlínea 67\nlínea 68\nlínea 69\nlínea 70\nlínea 71\nlínea 72\nlínea 73\nlínea 74\nlínea 75\nlínea 76\nlínea 77\nlínea 78\nlínea 79\nlínea 80\nlínea 81\nlínea 82\nlínea 83\nlínea 84\nlínea 85\nlínea 86\nlínea 87\nlínea 88\nlínea 89\nlínea 90\nlínea 91\nlínea 92\nlínea 93\nlínea 94\nlínea 95\nlínea 96\nlínea 97\nlínea 98\nlínea 99\nlínea 100\nlínea 101\nlínea 102\nlínea 103\nlínea 104\nlínea 105\nlínea 106\nlínea 107\nlínea 108\nlínea 109\nlínea 110\nlínea 111\nlínea 112\nlínea 113\nlínea 114\nlínea 115\nlínea 116\nlínea 117\nlínea 118\nlínea 119\nlínea 120\nlínea 121\nlínea 122\nlínea 123\nlínea 124\nlínea 125\nlínea 126\nlínea 127\nlínea 128\nlínea 129\nlínea 130\nlínea 131\nlínea 132\nlínea 133\nlínea 134\nlínea 135\nlínea 136\nlínea 137\nlínea 138\nlínea 139\nlínea 140\nlínea 141\nlínea 142\nlínea 143\nlínea 144\nlínea 145\nlínea 146\nlínea 147\nlínea 148\nlínea 149\nlínea 150\nlínea 151\nlínea 152\nlínea 153\nlínea 154\nlínea 155\nlínea 156\nlínea 157\nlínea 158\nlínea 159\nlínea 160\nlínea 161\nlínea 162\nlínea 163\nlínea 164\nlínea 165\nlínea 166\nlínea 167\nlínea 168\nlínea 169\nlínea 170\nlínea 171\nlínea 172\nlínea 173\nlínea 174\nlínea 175\nlínea 176\nlínea 177\nlínea 178\nlínea 179\nlínea 180\nlínea 181\nlínea 182\nlínea 183\nlínea 184\nlínea 185\nlínea 186\nlínea 187\nlínea 188\nlínea 189\nlínea 190\nlínea 191\nlínea 192\nlínea 193\nlínea 194\nlínea 195\nlínea 196\nlínea 197\nlínea 198\nlínea 199\nlínea 200\nlínea 201\nlínea 202\nlínea 203\nlínea 204\nlínea 205\nlínea 206\nlínea 207\nlínea 208\nlínea 209\nlínea 210\nlínea 211\nlínea 212\nlínea 213\nlínea 214\nlínea 215\nlínea 216\nlínea 217\nlínea 218\nlínea 219\nlínea 220\nlínea 221\nlínea 222\nlínea 223\nlínea 224\nlínea 225\nlínea 226\nlínea 227\nlínea 228\nlínea 229\nlínea 230\nlínea 231\nlínea 232\nlínea 233\nlínea 234\nlínea 235\nlínea 236\nlínea 237\nlínea 238\nlínea 239\nlínea 240\nlínea 241\nlínea 242\nlínea 243\nlínea 244\nlínea 245\nlínea 246\nlínea 247\nlínea 248\nlínea 249\nlínea 250\nlínea 251\nlínea 252\nlínea 253\nlínea 254\nlínea 255\nlínea 256\nlínea 257\nlínea 258\nlínea 259\nlínea 260\nlínea 261\nlínea 262\nlínea 263\nlínea 264\nlínea 265\nlínea 266\nlínea 267\nlínea 268\nlínea 269\nlínea 270\nlínea 271\nlínea 272\nlínea 273\nlínea 274\nlínea 275\nlínea 276\nlínea 277\nlínea 278\nlínea 279\nlínea 280\nlínea 281\nlínea 282\nlínea 283\nlínea 284\nlínea 285\nlínea 286\nlínea 287\nlínea 288\nlínea 289\nlínea 290\nlínea 291\nlínea 292\nlínea 293\nlínea 294\nlínea 295\nlínea 296\nlínea 297\nlínea 298\nlínea 299\nlínea 300\nlínea 301\nlínea 302\nlínea 303\nlínea 304\nlínea 305\nlínea 306\nlínea 307\nlínea 308\nlínea 309\nlínea 310\nlínea 311\nlínea 312\nlínea 313\nlínea 314\nlínea 315\nlínea 316\nlínea 317\nlínea 318\nlínea 319\nlínea 320\nlínea 321\nlínea 322\nlínea 323\nlínea 324\nlínea 325\nlínea 326\nlínea 327\nlínea 328\nlínea 329\nlínea 330\nlínea 331\nlínea 332\nlínea 333\nlínea 334\nlínea 335\nlínea 336\nlínea 337\nlínea 338\nlínea 339\nlínea 340\nlínea 341\nlínea 342\nlínea 343\nlínea 344\nlínea 345\nlínea 346\nlínea 347\nlínea 348\nlínea 349\nlínea 350\nlínea 351\nlínea 352\nlínea 353\nlínea 354\nlínea 355\nlínea 356\nlínea 357\nlínea 358\nlínea 359\nlínea 360\nlínea 361\nlínea 362\nlínea 363\nlínea 364\nlínea 365\nlínea 366\nlínea 367\nlínea 368\nlínea 369\nlínea 370\nlínea 371\nlínea 372\nlínea 373\nlínea 374\nlínea 375\nlínea 376\nlínea 377\nlínea 378\nlínea 379\nlínea 380\nlínea 381\nlínea 382\nlínea 383\nlínea 384\nlínea 385\nlínea 386\nlínea 387\nlínea 388\nlínea 389\nlínea 390\nlínea 391\nlínea 392\nlínea 393\nlínea 394\nlínea 395\nlínea 396\nlínea 397\nlínea 398\nlínea 399\nlínea 400\nlínea 401\nlínea 402\nlínea 403\nlínea 404\nlínea 405\nlínea 406\nlínea 407\nlínea 408\nlínea 409\nlínea 410\nlínea 411\nlínea 412\nlínea 413\nlínea 414\nlínea 415\nlínea 416\nlínea 417\nlínea 418\nlínea 419\nlínea 420\nlínea 421\nlínea 422\nlínea 423\nlínea 424\nlínea 425\nlínea 426\nlínea 427\nlínea 428\nlínea 429\nlínea 430\nlínea 431\nlínea 432\nlínea 433\nlínea 434\nlínea 435\nlínea 436\nlínea 437\nlínea 438\nlínea 439\nlínea 440\nlínea 441\nlínea 442\nlínea 443\nlínea 444\nlínea 445\nlínea 446\nlínea 447\nlínea 448\nlínea 449\nlínea 450\nlínea 451\nlínea 452\nlínea 453\nlínea 454\nlínea 455\nlínea 456\nlínea 457\nlínea 458\nlínea 459\nlínea 460\nlínea 461\nlínea 462\nlínea 463\nlínea 464\nlínea 465\nlínea 466\nlínea 467\nlínea 468\nlínea 469\nlínea 470\nlínea 471\nlínea 472\nlínea 473\nlínea 474\nlínea 475\nlínea 476\nlínea 477\nlínea 478\nlínea 479\nlínea 480\nlínea 481\nlínea 482\nlínea 483\nlínea 484\nlínea 485\nlínea 486\nlínea 487\nlínea 488\nlínea 489\nlínea 490\nlínea 491\nlínea 492\nlínea 493\nlínea 494\nlínea 495\nlínea 496\nlínea 497\nlínea 498\nlínea 499\nlínea 500\nlínea 501\nlínea 502\nlínea 503\nlínea 504\nlínea 505\nlínea 506\nlínea 507\nlínea 508\nlínea 509\nlínea 510\nlínea 511\nlínea 512\nlínea 513\nlínea 514\nlínea 515\nlínea 516\nlínea 517\nlínea 518\nlínea 519\nlínea 520\nlínea 521\nlínea 522\nlínea 523\nlínea 524\nlínea 525\nlínea 526\nlínea 527\nlínea 528\nlínea 529\nlínea 530\nlínea 531\nlínea 532\nlínea 533\nlínea 534\nlínea 535\nlínea 536\nlínea 537\nlínea 538\nlínea 539\nlínea 540\nlínea 541\nlínea 542\nlínea 543\nlínea 544\nlínea 545\nlínea 546\nlínea 547\nlínea 548\nlínea 549\nlínea 550\nlínea 551\nlínea 552\nlínea 553\nlínea 554\nlínea 555\nlínea 556\nlínea 557\nlínea 558\nlínea 559\nlínea 560\nlínea 561\nlínea 562\nlínea 563\nlínea 564\nlínea 565\nlínea 566\nlínea 567\nlínea 568\nlínea 569\nlínea 570\nlínea 571\nlínea 572\nlínea 573\nlínea 574\nlínea 575\nlínea 576\nlínea 577\nlínea 578\nlínea 579\nlínea 580\nlínea 581\nlínea 582\nlínea 583\nlínea 584\nlínea 585\nlínea 586\nlínea 587\nlínea 588\nlínea 589\nlínea 590\nlínea 591\nlínea 592\nlínea 593\nlínea 594\nlínea 595\nlínea 596\nlínea 597\nlínea 598\nlínea 599\nlínea 600\nlínea 601\nlínea 602\nlínea 603\nlínea 604\nlínea 605\nlínea 606\nlínea 607\nlínea 608\nlínea 609\nlínea 610\nlínea 611\nlínea 612\nlínea 613\nlínea 614\nlínea 615\nlínea 616\nlínea 617\nlínea 618\nlínea 619\nlínea 620\nlínea 621\nlínea 622\nlínea 623\nlínea 624\nlínea 625\nlínea 626\nlínea 627\nlínea 628\nlínea 629\nlínea 630\nlínea 631\nlínea 632\nlínea 633\nlínea 634\nlínea 635\nlínea 636\nlínea 637\nlínea 638\nlínea 639\nlínea 640\nlínea 641\nlínea 642\nlínea 643\nlínea 644\nlínea 645\nlínea 646\nlínea 647\nlínea 648\nlínea 649\nlínea 650\nlínea 651\nlínea 652\nlínea 653\nlínea 654\nlínea 655\nlínea 656\nlínea 657\nlínea 658\nlínea 659\nlínea 660\nlínea 661\nlínea 662\nlínea 663\nlínea 664\nlínea 665\nlínea 666\nlínea 667\nlínea 668\nlínea 669\nlínea 670\nlínea 671\nlínea 672\nlínea 673\nlínea 674\nlínea 675\nlínea 676\nlínea 677\nlínea 678\nlínea 679\nlínea 680\nlínea 681\nlínea 682\nlínea 683\nlínea 684\nlínea 685\nlínea 686\nlínea 687\nlínea 688\nlínea 689\nlínea 690\nlínea 691\nlínea 692\nlínea 693\nlínea 694\nlínea 695\nlínea 696\nlínea 697\nlínea 698\nlínea 699\nlínea 700\nlínea 701\nlínea 702\nlínea 703\nlínea 704\nlínea 705\nlínea 706\nlínea 707\nlínea 708\nlínea 709\nlínea 710\nlínea 711\nlínea 712\nlínea 713\nlínea 714\nlínea 715\nlínea 716\nlínea 717\nlínea 718\nlínea 719\nlínea 720\nlínea 721\nlínea 722\nlínea 723\nlínea 724\nlínea 725\nlínea 726\nlínea 727\nlínea 728\nlínea 729\nlínea 730\nlínea 731\nlínea 732\nlínea 733\nlínea 734\nlínea 735\nlínea 736\nlínea 737\nlínea 738\nlínea 739\nlínea 740\nlínea 741\nlínea 742\nlínea 743\nlínea 744\nlínea 745\nlínea 746\nlínea 747\nlínea 748\nlínea 749\nlínea 750\nlínea 751\nlínea 752\nlínea 753\nlínea 754\nlínea 755\nlínea 756\nlínea 757\nlínea 758\nlínea 759\nlínea 760\nlínea 761\nlínea 762\nlínea 763\nlínea 764\nlínea 765\nlínea 766\nlínea 767\nlínea 768\nlínea 769\nlínea 770\nlínea 771\nlínea 772\nlínea 773\nlínea 774\nlínea 775\nlínea 776\nlínea 777\nlínea 778\nlínea 779\nlínea 780\nlínea 781\nlínea 782\nlínea 783\nlínea 784\nlínea 785\nlínea 786\nlínea 787\nlínea 788\nlínea 789\nlínea 790\nlínea 791\nlínea 792\nlínea 793\nlínea 794\nlínea 795\nlínea 796\nlínea 797\nlínea 798\nlínea 799\nlínea 800\nlínea 801\nlínea 802\nlínea 803\nlínea 804\nlínea 805\nlínea 806\nlínea 807\nlínea 808\nlínea 809\nlínea 810\nlínea 811\nlínea 812\nlínea 813\nlínea 814\nlínea 815\nlínea 816\nlínea 817\nlínea 818\nlínea 819\nlínea 820\nlínea 821\nlínea 822\nlínea 823\nlínea 824\nlínea 825\nlínea 826\nlínea 827\nlínea 828\nlínea 829\nlínea 830\nlínea 831\nlínea 832\nlínea 833\nlínea 834\nlínea 835\nlínea 836\nlínea 837\nlínea 838\nlínea 839\nlínea 840\nlínea 841\nlínea 842\nlínea 843\nlínea 844\nlínea 845\nlínea 846\nlínea 847\nlínea 848\nlínea 849\nlínea 850\nlínea 851\nlínea 852\nlínea 853\nlínea 854\nlínea 855\nlínea 856\nlínea 857\nlínea 858\nlínea 859\nlínea 860\nlínea 861\nlínea 862\nlínea 863\nlínea 864\nlínea 865\nlínea 866\nlínea 867\nlínea 868\nlínea 869\nlínea 870\nlínea 871\nlínea 872\nlínea 873\nlínea 874\nlínea 875\nlínea 876\nlínea 877\nlínea 878\nlínea 879\nlínea 880\nlínea 881\nlínea 882\nlínea 883\nlínea 884\nlínea 885\nlínea 886\nlínea 887\nlínea 888\nlínea 889\nlínea 890\nlínea 891\nlínea 892\nlínea 893\nlínea 894\nlínea 895\nlínea 896\nlínea 897\nlínea 898\nlínea 899"
+        }
+      ]
+    },
+    "espera": {
+      "cantidad": 3
+    }
+  },
+  {
+    "nombre": "sin chat_id no envía",
+    "tipo": "invalido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {}
+    ],
+    "nodos": {
+      "Plan": [
+        {
+          "respuesta": "x"
+        }
+      ]
+    },
+    "espera": {
+      "cantidad": 0
+    }
+  },
+  {
+    "nombre": "mismo plan otra vez",
+    "tipo": "duplicado",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {}
+    ],
+    "nodos": {
+      "Plan": [
+        {
+          "chat_id": 1001,
+          "respuesta": "Hola"
+        }
+      ]
+    },
+    "espera": {
+      "cantidad": 1
+    }
+  }
+]

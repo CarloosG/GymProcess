@@ -1,0 +1,168 @@
+[
+  {
+    "tablas": {
+      "Usuarios": [
+        {
+          "ID usuario": 1001,
+          "Alias": "Ana",
+          "Nombre": "Ana Prueba",
+          "Peso corporal (kg)": 62.5,
+          "Fecha peso": "2026-11-01",
+          "Invitado por": 9001,
+          "Activo": "Sí",
+          "Registrado": "2026-11-01 10:00:00",
+          "Rol": "usuario",
+          "row_number": 2
+        },
+        {
+          "ID usuario": 9001,
+          "Alias": "Admin",
+          "Nombre": "Admin Prueba",
+          "Activo": "Sí",
+          "Rol": "admin",
+          "row_number": 3
+        },
+        {
+          "ID usuario": 1003,
+          "Alias": "Inactivo",
+          "Nombre": "Ex Usuario",
+          "Activo": "No",
+          "Rol": "usuario",
+          "row_number": 4
+        }
+      ],
+      "Invitaciones": [
+        {
+          "Código": "GYM-AAA111",
+          "Creado por": 9001,
+          "Estado": "Disponible",
+          "row_number": 2
+        },
+        {
+          "Código": "GYM-BBB222",
+          "Creado por": 9001,
+          "Estado": "Usado",
+          "Usado por": 1001,
+          "Fecha uso": "2026-11-01",
+          "row_number": 3
+        }
+      ],
+      "Ejercicios": [],
+      "Sesiones": [],
+      "Series": [],
+      "Amigos": [],
+      "Permisos": [],
+      "Por confirmar": [],
+      "Cambios": [],
+      "Log Bot": [
+        {
+          "Fecha": "2026-11-01 10:00:00",
+          "ID usuario": 1001,
+          "update_id": 5000,
+          "Intención": "registro",
+          "Resultado": "registrado",
+          "row_number": 2
+        }
+      ]
+    },
+    "_h": {
+      "Usuarios": [
+        "ID usuario",
+        "Alias",
+        "Nombre",
+        "Peso corporal (kg)",
+        "Fecha peso",
+        "Invitado por",
+        "Activo",
+        "Registrado",
+        "Rol"
+      ],
+      "Invitaciones": [
+        "Código",
+        "Creado por",
+        "Estado",
+        "Usado por",
+        "Fecha uso"
+      ],
+      "Ejercicios": [
+        "Ejercicio",
+        "Grupo muscular",
+        "Sinónimos",
+        "Tipo",
+        "Por mano",
+        "Provisional"
+      ],
+      "Sesiones": [
+        "ID sesión",
+        "ID usuario",
+        "Fecha",
+        "Grupos musculares",
+        "Observaciones",
+        "ID mensaje",
+        "ID mensaje bot",
+        "Estado registro",
+        "Origen",
+        "Registrado"
+      ],
+      "Series": [
+        "ID serie",
+        "ID sesión",
+        "ID usuario",
+        "Fecha",
+        "Ejercicio",
+        "N.º serie",
+        "Unidad",
+        "Peso (kg)",
+        "Placa",
+        "Modalidad",
+        "Reps",
+        "Segundos",
+        "RPE",
+        "Notas",
+        "Estado registro",
+        "ID mensaje"
+      ],
+      "Amigos": [
+        "ID",
+        "Usuario A",
+        "Usuario B",
+        "Estado",
+        "Fecha"
+      ],
+      "Permisos": [
+        "ID usuario",
+        "Compartir con",
+        "Métricas"
+      ],
+      "Por confirmar": [
+        "ID",
+        "ID usuario",
+        "Pregunta",
+        "Borrador JSON",
+        "ID mensaje bot",
+        "Estado",
+        "Reservado por",
+        "Creado"
+      ],
+      "Cambios": [
+        "Fecha",
+        "ID usuario",
+        "Tabla",
+        "ID registro",
+        "Acción",
+        "Antes",
+        "Después",
+        "Origen"
+      ],
+      "Log Bot": [
+        "Fecha",
+        "ID usuario",
+        "update_id",
+        "Intención",
+        "Resultado",
+        "Duración (s)",
+        "Error"
+      ]
+    }
+  }
+]

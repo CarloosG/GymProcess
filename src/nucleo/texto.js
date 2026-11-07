@@ -19,4 +19,13 @@ function num(v) {
   return Number(t.replace(',', '.'));
 }
 
-if (typeof module !== 'undefined') module.exports = { normalizar: normalizar, num: num };
+// Protege un valor de texto antes de escribirlo en la hoja: si empieza con = + @ o parece fecha corta ("1/2"),
+// le antepone un apóstrofo. Números, booleanos y vacíos pasan sin cambio (null/undefined -> '').
+function limpio(v) {
+  if (v === null || v === undefined) return '';
+  if (typeof v !== 'string') return v;
+  if (/^[=+@]/.test(v) || /^\d{1,2}\/\d{1,2}(\/\d{2,4})?$/.test(v)) return "'" + v;
+  return v;
+}
+
+if (typeof module !== 'undefined') module.exports = { normalizar: normalizar, num: num, limpio: limpio };

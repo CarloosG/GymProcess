@@ -236,8 +236,24 @@ function txtProgreso(r) {
   return out.join('\n');
 }
 
+// ---------- 15. entrada (T04) ----------
+function _alias(a) {
+  var t = (a === null || a === undefined) ? '' : String(a).trim();
+  return t === '' ? 'amigo' : t;
+}
+function txtHola(alias) {
+  return 'Hola, <b>' + _e(_alias(alias)) + '</b>.\nEl registro de entrenamientos llega en la próxima versión.';
+}
+function txtBienvenida(alias) {
+  return 'Bienvenido, <b>' + _e(_alias(alias)) + '</b>. Ya quedaste registrado.\nEl registro de entrenamientos llega en la próxima versión.';
+}
+function txtPedirCodigo() {
+  return 'Para usar el bot pide un código de invitación.';
+}
+
 if (typeof module !== 'undefined') {
   module.exports = {
+    txtHola: txtHola, txtBienvenida: txtBienvenida, txtPedirCodigo: txtPedirCodigo,
     escaparHtml: escaparHtml, formatearNumero: formatearNumero, formatearKg: formatearKg, formatearFecha: formatearFecha,
     partirMensaje: partirMensaje, txtConfirmacionRegistro: txtConfirmacionRegistro, txtFaltantes: txtFaltantes,
     txtUltimaSesion: txtUltimaSesion, txtRecords: txtRecords, txtEstancado: txtEstancado,

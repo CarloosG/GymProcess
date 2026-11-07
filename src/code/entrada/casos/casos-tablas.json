@@ -1,0 +1,95 @@
+[
+  {
+    "nombre": "lectura completa",
+    "tipo": "valido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": "@batchget_ok.json",
+    "espera": {
+      "cantidad": 1,
+      "salida": [
+        {
+          "tablas": {
+            "Usuarios": [
+              {
+                "ID usuario": 1001,
+                "Alias": "Ana",
+                "row_number": 2
+              },
+              {
+                "row_number": 3
+              },
+              {
+                "row_number": 4
+              }
+            ],
+            "Invitaciones": [
+              {
+                "Código": "GYM-AAA111",
+                "row_number": 2
+              }
+            ]
+          }
+        }
+      ],
+      "no_contiene": [
+        "undefined",
+        "NaN"
+      ]
+    }
+  },
+  {
+    "nombre": "falta la pestaña Series",
+    "tipo": "invalido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": "@batchget_sin_series.json",
+    "espera": {
+      "error": "Series"
+    }
+  },
+  {
+    "nombre": "falta el encabezado Estado en Invitaciones",
+    "tipo": "invalido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": "@batchget_sin_encabezado.json",
+    "espera": {
+      "error": "Estado"
+    }
+  },
+  {
+    "nombre": "respuesta vacía",
+    "tipo": "invalido",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": [
+      {}
+    ],
+    "espera": {
+      "error": "Falta la pestaña"
+    }
+  },
+  {
+    "nombre": "misma lectura otra vez (idempotente)",
+    "tipo": "duplicado",
+    "ahora": "2026-11-07T14:30:00",
+    "entrada": "@batchget_ok.json",
+    "espera": {
+      "cantidad": 1,
+      "salida": [
+        {
+          "_h": {
+            "Usuarios": [
+              "ID usuario",
+              "Alias",
+              "Nombre",
+              "Peso corporal (kg)",
+              "Fecha peso",
+              "Invitado por",
+              "Activo",
+              "Registrado",
+              "Rol"
+            ]
+          }
+        }
+      ]
+    }
+  }
+]
